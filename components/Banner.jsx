@@ -7,16 +7,13 @@ const Banner = () => {
     <div className="relative h-screen overflow-hidden">
       <div className="absolute inset-0 bg-[url('/src/assets/Banner.jpg')] bg-cover   blur-xs z-0"></div>
       <div className="absolute inset-0 bg-black/10 z-10 dark:bg-black/50"></div>
-      <div className="relative z-30">
-        <NavBar></NavBar>
-      </div>
 
       <div className="relative z-20 flex flex-col text-center items-center container mx-auto justify-center  text-white h-full px-4">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          class="text-6xl  font-bold mb-4"
+          className="text-6xl  font-bold mb-4"
         >
           Empower Your Learning, Together
         </motion.h1>
@@ -24,7 +21,7 @@ const Banner = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-          class=" font-bold text-2xl text-white/80"
+          className=" font-bold text-2xl text-white/80"
         >
           StudySphere brings students together to collaborate on assignments,
           share knowledge, and achieve academic goals as a team. Join a smarter,

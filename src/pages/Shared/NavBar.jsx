@@ -22,7 +22,7 @@ const NavBar = () => {
   }, [darkMode]);
 
   const darkToggle = () => {
-    setDarkMode((prev) => (prev === "active" ? null : "active"));
+    setDarkMode((prev) => (prev === "active" ? "hidden" : "active"));
   };
 
   useEffect(() => {
@@ -41,9 +41,7 @@ const NavBar = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Assignments", path: "/assignments" },
-    { name: "Pending Assignments", path: "/groups" },
-    { name: "Resources", path: "/resources" },
-    { name: "Profile", path: "/profile" },
+    { name: "Pending Assignments", path: "/pending-assignments" },
   ];
   return (
     <div
@@ -81,9 +79,9 @@ const NavBar = () => {
                   <NavLink
                     to={item.path}
                     className={({ isActive }) =>
-                      `transition-colors duration-300  ${
+                      `transition-colors duration-300 text-white ${
                         isActive ? "text-[#4BCCA8] font-semibold" : ""
-                      }`
+                      } `
                     }
                   >
                     {item.name}
@@ -104,7 +102,7 @@ const NavBar = () => {
           </a>
         </div>
 
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-end hidden lg:flex w-full">
           <ul className="menu menu-horizontal px-1">
             {navItems.map((item) => (
               <li key={item.name}>
@@ -112,8 +110,14 @@ const NavBar = () => {
                   to={item.path}
                   className={({ isActive }) =>
                     `transition-colors duration-300  ${
-                      isActive ? "text-emerald-400 font-semibold" : ""
-                    }`
+                      isActive
+                        ? "text-emerald-400 font-semibold"
+                        : "dark:text-white text-white"
+                    }${`${
+                      location.pathname !== "/" || scrolled
+                        ? "text-light-primary"
+                        : ""
+                    }`}`
                   }
                 >
                   {item.name}
@@ -123,23 +127,26 @@ const NavBar = () => {
           </ul>
         </div>
 
-        <div className="navbar-end space-x-4">
-          {darkMode === "active" ? (
-            <MdDarkMode
-              onClick={darkToggle}
-              className="text-4xl rounded-full cursor-pointer text-white"
-            />
-          ) : (
-            <CiLight
-              onClick={darkToggle}
-              className={`text-4xl rounded-full cursor-pointer ${
-                scrolled ? "text-gray-800" : "text-white"
-              }`}
-            />
-          )}
-          <a className="px-4 py-2 cursor-pointer rounded-md mt-3 bg-emerald-400 text-white border-none hover:bg-emerald-500 flex items-center justify-center">
+        <div className="navbar-end max-w-max ml-4 space-x-4 flex items-center">
+          <button
+            onClick={darkToggle}
+            className="text-4xl rounded-full cursor-pointer "
+          >
+            {darkMode === "active" ? (
+              <CiLight className="text-white" />
+            ) : (
+              <MdDarkMode
+                className={`${
+                  scrolled || location.pathname !== "/"
+                    ? "text-black"
+                    : "text-white"
+                }`}
+              />
+            )}
+          </button>
+          <button className="px-4 py-2 cursor-pointer rounded-md  bg-emerald-400 text-white border-none hover:bg-emerald-500 flex items-center justify-center">
             Sign In
-          </a>
+          </button>
         </div>
       </div>
     </div>
