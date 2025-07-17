@@ -4,4 +4,13 @@
 @theme {
   --color-base-dark: oklch(25.33% 0.016 252.42);
   --font-logo: "Rubik", "sans-serif";
+  /* light */
+  --color-light-primary: #333333;
+  --color-light-secondary: #666666;
+  --color-background-light: #ffffff;
+
+  /* dark */
+  --color-dark-primary: #e0e0e0;
+  --color-dark-secondary: #a0a0a0;
+  --color-background-dark: #121212;
 }

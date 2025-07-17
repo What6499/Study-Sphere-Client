@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MdDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
+import { NavLink, useLocation } from "react-router";
 
 const NavBar = () => {
   const [darkMode, setDarkMode] = useState(() => {
@@ -9,6 +10,7 @@ const NavBar = () => {
 
   const [scrolled, setScrolled] = useState(false);
 
+  const location = useLocation();
   useEffect(() => {
     if (darkMode === "active") {
       document.documentElement.classList.add("dark");
@@ -46,7 +48,9 @@ const NavBar = () => {
   return (
     <div
       className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white shadow-md dark:bg-gray-900" : "bg-transparent"
+        scrolled || location.pathname !== "/"
+          ? "bg-[#F5F5F5] shadow-md dark:bg-[#121212]"
+          : "bg-transparent"
       }`}
     >
       <div className="navbar container mx-auto">
@@ -72,19 +76,28 @@ const NavBar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
             >
-              <li>
-                <a>Home</a>
-              </li>
-
-              <li>
-                <a>Item 3</a>
-              </li>
+              {navItems.map((item) => (
+                <li key={item.name}>
+                  <NavLink
+                    to={item.path}
+                    className={({ isActive }) =>
+                      `transition-colors duration-300  ${
+                        isActive ? "text-[#4BCCA8] font-semibold" : ""
+                      }`
+                    }
+                  >
+                    {item.name}
+                  </NavLink>
+                </li>
+              ))}
             </ul>
           </div>
           <a
             href="/"
-            className={`cursor-pointer font-logo font-bold text-4xl transition-colors duration-300 ${
-              scrolled ? "text-[#4BCCA8]" : "text-white"
+            className={`cursor-pointer font-logo font-bold text-4xl  transition-colors duration-300 ${
+              scrolled || location.pathname !== "/"
+                ? "text-light-primary dark:text-white"
+                : "text-white"
             }`}
           >
             StudySphere
@@ -93,43 +106,20 @@ const NavBar = () => {
 
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li>
-              <a
-                className={
-                  scrolled ? "text-gray-800 dark:text-white" : "text-white"
-                }
-              >
-                Item 1
-              </a>
-            </li>
-            <li>
-              <details>
-                <summary
-                  className={
-                    scrolled ? "text-gray-800 dark:text-white" : "text-white"
+            {navItems.map((item) => (
+              <li key={item.name}>
+                <NavLink
+                  to={item.path}
+                  className={({ isActive }) =>
+                    `transition-colors duration-300  ${
+                      isActive ? "text-emerald-400 font-semibold" : ""
+                    }`
                   }
                 >
-                  Parent
-                </summary>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
-            </li>
-            <li>
-              <a
-                className={
-                  scrolled ? "text-gray-800 dark:text-white" : "text-white"
-                }
-              >
-                Item 3
-              </a>
-            </li>
+                  {item.name}
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -147,7 +137,7 @@ const NavBar = () => {
               }`}
             />
           )}
-          <a className="btn bg-[#4BCCA8] text-white border-none hover:bg-emerald-600 flex items-center justify-center">
+          <a className="px-4 py-2 cursor-pointer rounded-md mt-3 bg-emerald-400 text-white border-none hover:bg-emerald-500 flex items-center justify-center">
             Sign In
           </a>
         </div>
