@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MdDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
-import { NavLink, useLocation } from "react-router";
+import { Link, NavLink, useLocation } from "react-router";
 
 const NavBar = () => {
   const [darkMode, setDarkMode] = useState(() => {
@@ -144,9 +144,11 @@ const NavBar = () => {
               />
             )}
           </button>
-          <button className="px-4 py-2 cursor-pointer rounded-md  bg-emerald-400 text-white border-none hover:bg-emerald-500 flex items-center justify-center">
-            Sign In
-          </button>
+          <Link to="auth/sign-in">
+            <button className="px-4 py-2 cursor-pointer rounded-md  bg-emerald-400 text-white border-none hover:bg-emerald-500 flex items-center justify-center">
+              Sign In
+            </button>
+          </Link>
         </div>
       </div>
     </div>

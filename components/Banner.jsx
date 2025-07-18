@@ -27,9 +27,14 @@ const Banner = () => {
           share knowledge, and achieve academic goals as a team. Join a smarter,
           more connected way to learn.
         </motion.p>
-        <button className="px-4 py-2 cursor-pointer rounded-md mt-3 bg-emerald-400  text-white border-none hover:bg-emerald-500 flex items-center justify-center">
+        <motion.button
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
+          className="px-4 py-2 cursor-pointer rounded-md mt-3 bg-emerald-400  text-white border-none hover:bg-emerald-500 flex items-center justify-center"
+        >
           Get Started
-        </button>
+        </motion.button>
       </div>
     </div>
   );
