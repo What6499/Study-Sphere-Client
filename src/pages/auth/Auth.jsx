@@ -12,7 +12,7 @@ const Auth = () => {
     <div className="relative min-h-screen flex items-center justify-center bg-[url('/src/assets/Banner.jpg')] bg-cover bg-center">
       <div className="absolute inset-0 bg-black/10 z-0 dark:bg-black/50" />
 
-      <div className="relative z-10 w-full max-w-4xl p-6 md:p-8 rounded-2xl shadow-xl">
+      <div className="relative z-10 w-full max-w-4xl p-6 backdrop-blur-md shadow-md bg-white/10 md:p-8 rounded-2xl ">
         <div className="flex flex-col md:flex-row gap-6">
           <motion.div
             className="relative w-full md:w-3/5 min-h-[200px] md:min-h-[300px] bg-[url('/src/assets/auth.jpg')] bg-cover bg-center rounded-lg overflow-hidden"
@@ -59,7 +59,7 @@ const Auth = () => {
 
           <AnimatePresence mode="wait">
             <motion.div
-              className="w-full md:w-2/5 flex flex-col backdrop-blur-lg bg-white/40 dark:bg-gray-900/40 rounded-lg p-6"
+              className="w-full md:w-2/5 flex flex-col backdrop-blur-2xl bg-white/50 dark:bg-gray-900/40 rounded-lg p-6"
               layout
               transition={{ duration: 0.1 }}
             >

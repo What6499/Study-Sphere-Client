@@ -14,11 +14,11 @@ const SignIn = ({ toggleAuth }) => {
           <div className="relative">
             <input
               type="email"
-              className="w-full px-4 py-2 pl-10 border border-gray-500 dark:border-gray-500 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              className="w-full border-none px-4 py-2 pl-10 border border-gray-500 dark:border-gray-500 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:outline-none "
               placeholder="you@example.com"
               required
             />
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-300">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 tsext-gray-600 dark:text-gray-300">
               📧
             </span>
           </div>
@@ -30,8 +30,8 @@ const SignIn = ({ toggleAuth }) => {
           <div className="relative">
             <input
               type="password"
-              className="w-full px-4 py-2 pl-10 border border-gray-500 dark:border-gray-500 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-400"
-              placeholder="••••••••"
+              className="w-full border-none px-4 py-2 pl-10 border border-gray-500 dark:border-gray-500 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:outline-none "
+              placeholder="Password"
               required
             />
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-300">
@@ -47,7 +47,7 @@ const SignIn = ({ toggleAuth }) => {
         </button>
       </form>
       <p className="mt-4 text-center text-sm text-gray-900 dark:text-white">
-        Don’t have an account?{" "}
+        Don't have an account?{" "}
         <button
           onClick={toggleAuth}
           className="text-emerald-500 font-medium hover:underline"
