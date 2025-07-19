@@ -1,8 +1,21 @@
-import React from "react";
+import React, { use } from "react";
+import { AuthContext } from "../../Context/AuthContext/AuthContext";
 
 const Register = ({ toggleAuth }) => {
+  const { createUser } = use(AuthContext);
+  const handleRegister = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    // create User
+    createUser(email, password)
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
+  };
   return (
-    <div>
+    <form name="form" onSubmit={handleRegister}>
       <h2 className="text-3xl font-bold text-center mb-6 text-emerald-500">
         Register
       </h2>
@@ -13,6 +26,7 @@ const Register = ({ toggleAuth }) => {
           </label>
           <div className="relative">
             <input
+              name="name"
               type="text"
               className="w-full focus:outline-none  border-none px-4 py-2 pl-10 border border-gray-500 dark:border-gray-500 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white  "
               placeholder="Your Name"
@@ -29,6 +43,7 @@ const Register = ({ toggleAuth }) => {
           </label>
           <div className="relative">
             <input
+              name="email"
               type="email"
               className="w-full  border-none px-4 py-2 pl-10 border border-gray-500 dark:border-gray-500 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:outline-none "
               placeholder="you@example.com"
@@ -45,7 +60,9 @@ const Register = ({ toggleAuth }) => {
           </label>
           <div className="relative">
             <input
+              name="password"
               type="password"
+              pattern="^(?=.*[a-z])(?=.*[A-Z]).{6,}$"
               className="w-full  border-none px-4 py-2 pl-10 border border-gray-500 dark:border-gray-500 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:outline-none "
               placeholder="Set Password"
               required
@@ -58,7 +75,7 @@ const Register = ({ toggleAuth }) => {
 
         <button
           type="submit"
-          className="w-full py-2 px-4 bg-emerald-400 hover:bg-emerald-500 text-white font-semibold rounded-md transition duration-200 hover:scale-105"
+          className="w-full py-2 px-4 bg-emerald-400 hover:bg-emerald-500 cursor-pointer text-white font-semibold rounded-md transition duration-200 hover:scale-105"
         >
           Create Account
         </button>
@@ -72,7 +89,7 @@ const Register = ({ toggleAuth }) => {
           Sign In
         </button>
       </p>
-    </div>
+    </form>
   );
 };
 

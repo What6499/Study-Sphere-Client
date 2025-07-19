@@ -29,6 +29,7 @@ const SignIn = ({ toggleAuth }) => {
           </label>
           <div className="relative">
             <input
+              pattern="^(?=.*[a-z])(?=.*[A-Z]).{6,}$"
               type="password"
               className="w-full border-none px-4 py-2 pl-10 border border-gray-500 dark:border-gray-500 rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:outline-none "
               placeholder="Password"
@@ -41,7 +42,7 @@ const SignIn = ({ toggleAuth }) => {
         </div>
         <button
           type="submit"
-          className="w-full py-2 px-4 bg-emerald-400 hover:bg-emerald-500 text-white font-semibold rounded-md transition duration-200 hover:scale-105"
+          className="w-full py-2 px-4 cursor-pointer bg-emerald-400 hover:bg-emerald-500 text-white font-semibold rounded-md transition duration-200 hover:scale-105"
         >
           Sign In
         </button>
@@ -50,7 +51,7 @@ const SignIn = ({ toggleAuth }) => {
         Don't have an account?{" "}
         <button
           onClick={toggleAuth}
-          className="text-emerald-500 font-medium hover:underline"
+          className="text-emerald-500 cursor-pointer font-medium hover:underline"
         >
           Register
         </button>
