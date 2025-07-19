@@ -1,17 +1,19 @@
-import React, { useContext, useState, useRef, useEffect, use } from "react";
+import React, { useState, useRef, useEffect, use } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 
 import Swal from "sweetalert2";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase/firebase.init";
 
 const Profile = () => {
-  const { user, logOut } = use(AuthContext);
+  const { user } = use(AuthContext);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const handleLogout = () => {
-    logOut()
+    signOut(auth)
       .then(() => {
         Swal.fire({
           icon: "success",

@@ -85,13 +85,10 @@ const Register = ({ toggleAuth }) => {
               name="name"
               maxLength={12}
               type="text"
-              className="w-full px-4 py-2 pl-10 border-none rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:outline-none"
-              placeholder="Your Name"
+              className="w-full px-4 py-2 border-none rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:outline-none"
+              placeholder="Enter Your Name"
               required
             />
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-300">
-              👤
-            </span>
           </div>
         </div>
         <div>
@@ -102,13 +99,10 @@ const Register = ({ toggleAuth }) => {
             <input
               name="email"
               type="email"
-              className="w-full px-4 py-2 pl-10 border-none rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:outline-none"
-              placeholder="you@example.com"
+              className="w-full px-4 py-2 border-none rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:outline-none"
+              placeholder="Enter Your Email"
               required
             />
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-300">
-              📧
-            </span>
           </div>
         </div>
         <div>
@@ -120,14 +114,11 @@ const Register = ({ toggleAuth }) => {
               name="password"
               type="password"
               pattern="^(?=.*[a-z])(?=.*[A-Z]).{6,}$"
-              className="w-full px-4 py-2 pl-10 border-none rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:outline-none"
-              placeholder="Set Password"
+              className="w-full px-4 py-2 border-none rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:outline-none"
+              placeholder="Set a Password"
               required
               title="Password must be at least 6 characters long and include both uppercase and lowercase letters."
             />
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-300">
-              🔒
-            </span>
           </div>
         </div>
         <div>
@@ -138,12 +129,9 @@ const Register = ({ toggleAuth }) => {
             <input
               name="photoURL"
               type="url"
-              className="w-full px-4 py-2 pl-10 border-none rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:outline-none"
+              className="w-full px-4 py-2 border-none rounded-md bg-white/60 dark:bg-gray-800/60 text-gray-900 dark:text-white focus:outline-none"
               placeholder="Enter URL"
             />
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-300">
-              📸
-            </span>
           </div>
         </div>
         <button
