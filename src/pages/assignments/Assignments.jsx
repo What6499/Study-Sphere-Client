@@ -1,61 +1,80 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import AssignmentCard from "../Shared/AssignmentCard";
 
 const Assignments = () => {
+  const [assignments, setAssignments] = useState([]);
+  const [search, setSearch] = useState("");
+  const [difficulty, setDifficulty] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAssignments = async () => {
+      setLoading(true);
+      const query = `?search=${search}&difficulty=${difficulty}`;
+      const { data } = await axios.get(
+        `http://localhost:5000/assignments${query}`
+      );
+      setAssignments(data);
+      setLoading(false);
+    };
+
+    fetchAssignments();
+  }, [search, difficulty]);
+
   return (
-    <div className="min-h-screen pt-24 px-4 md:px-6 lg:px-8 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+    <div className="min-h-screen pt-24 px-4 md:px-6 lg:px-8 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
-        {/* Sidebar - Filters */}
-        <aside className="lg:col-span-1 bg-white dark:bg-gray-800 rounded-xl shadow p-4">
+        <aside className="lg:col-span-1 bg-white dark:bg-gray-800 p-4 rounded-xl shadow">
           <h2 className="text-lg font-semibold mb-4">Filters</h2>
 
-          {/* Search Input */}
           <input
             type="text"
             placeholder="Search assignments..."
-            className="w-full px-3 py-2 mb-4 rounded-md bg-gray-100 dark:bg-gray-700 focus:outline-none text-sm text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full px-3 py-2 mb-4 rounded-md bg-gray-100 dark:bg-gray-700 focus:outline-none"
           />
 
-          {/* Difficulty Dropdown */}
-          <div className="mb-2">
-            <label
-              htmlFor="difficulty"
-              className="block mb-1 text-sm font-medium"
-            >
-              Difficulty
-            </label>
-            <select
-              id="difficulty"
-              className="w-full px-3 py-2 rounded-md bg-gray-100 dark:bg-gray-700 text-sm text-gray-900 dark:text-gray-100 focus:outline-none"
-            >
-              <option value="">All</option>
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
-            </select>
-          </div>
+          <label
+            className="block mb-1 text-sm font-medium"
+            htmlFor="difficulty"
+          >
+            Difficulty
+          </label>
+          <select
+            id="difficulty"
+            value={difficulty}
+            onChange={(e) => setDifficulty(e.target.value)}
+            className="w-full px-3 py-2 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white"
+          >
+            <option value="">All</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
         </aside>
 
-        {/* Main Content - Assignments */}
         <section className="lg:col-span-3 space-y-4">
           <h1 className="text-2xl font-bold mb-4">Assignments</h1>
 
-          {/* Placeholder assignment cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div
-                key={i}
-                className="p-4 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition"
-              >
-                <h3 className="text-lg font-semibold mb-2">
-                  Assignment Title {i + 1}
-                </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
-                  Short description of the assignment. Category, difficulty,
-                  etc.
-                </p>
-              </div>
-            ))}
-          </div>
+          {loading ? (
+            <p className="text-center">Loading...</p>
+          ) : assignments.length === 0 ? (
+            <p className="text-center text-gray-500">No assignments found.</p>
+          ) : (
+            <div className="space-y-4">
+              {assignments.map((assignment) => (
+                <AssignmentCard
+                  key={assignment._id}
+                  assignment={assignment}
+                  onView={(id) => console.log("View", id)}
+                  onUpdate={(id) => console.log("Update", id)}
+                  onDelete={(id) => console.log("Delete", id)}
+                />
+              ))}
+            </div>
+          )}
         </section>
       </div>
     </div>
