@@ -28,13 +28,13 @@ const Auth = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.1 }}
                   className="text-white"
                 >
                   {isSignIn ? (
                     <>
                       <h3 className="text-xl md:text-2xl font-semibold mb-2">
-                        👋 Welcome Back!
+                        Welcome Back!
                       </h3>
                       <p className="text-sm md:text-base">
                         Log in to access your dashboard and stay productive with
@@ -44,7 +44,7 @@ const Auth = () => {
                   ) : (
                     <>
                       <h3 className="text-xl md:text-2xl font-semibold mb-2">
-                        🌟 Join StudySphere!
+                        Join StudySphere!
                       </h3>
                       <p className="text-sm md:text-base">
                         Create your account to start organizing your studies and

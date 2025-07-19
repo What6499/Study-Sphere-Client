@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { MdDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
 import { Link, NavLink, useLocation } from "react-router";
+import { AuthContext } from "../../Context/AuthContext/AuthContext";
+import Profile from "./Profile";
 
 const NavBar = () => {
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("darkMode");
   });
-
+  const { user } = use(AuthContext);
   const [scrolled, setScrolled] = useState(false);
 
   const location = useLocation();
@@ -144,11 +146,15 @@ const NavBar = () => {
               />
             )}
           </button>
-          <Link to="auth/sign-in">
-            <button className="px-4 py-2 cursor-pointer rounded-md  bg-emerald-400 text-white border-none hover:bg-emerald-500 flex items-center justify-center">
-              Sign In
-            </button>
-          </Link>
+          {user ? (
+            <Profile></Profile>
+          ) : (
+            <Link to="auth/sign-in">
+              <button className="px-4 py-2 cursor-pointer rounded-md  bg-emerald-400 text-white border-none hover:bg-emerald-500 flex items-center justify-center">
+                Sign In
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
