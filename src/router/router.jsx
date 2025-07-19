@@ -8,6 +8,8 @@ import Assignments from "../pages/assignments/Assignments";
 import SignIn from "../pages/auth/SignIn";
 import CreateAssignment from "../pages/Create-Assignment/CreateAssignment";
 import AssignmentDetails from "../../components/AssignmentDetails";
+import MyAssignments from "../../Dashboard/MySubmissions";
+import Dashboard from "../../Dashboard/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -21,16 +23,6 @@ const router = createBrowserRouter([
       {
         path: "auth",
         Component: Auth,
-        children: [
-          {
-            path: "sign-in",
-            Component: SignIn,
-          },
-          {
-            path: "register",
-            Component: Register,
-          },
-        ],
       },
       {
         path: "/assignments",
@@ -43,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/assignments/:id",
         Component: AssignmentDetails,
+      },
+      {
+        path: "/dashboard",
+        Component: Dashboard,
       },
     ],
   },

@@ -149,7 +149,7 @@ const NavBar = () => {
           {user ? (
             <Profile></Profile>
           ) : (
-            <Link to="auth/sign-in">
+            <Link to="auth">
               <button className="px-4 py-2 cursor-pointer rounded-md  bg-emerald-400 text-white border-none hover:bg-emerald-500 flex items-center justify-center">
                 Sign In
               </button>

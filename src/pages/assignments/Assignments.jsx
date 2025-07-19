@@ -25,7 +25,7 @@ const Assignments = () => {
   return (
     <div className="min-h-screen pt-24 px-4 md:px-6 lg:px-8 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
-        <aside className="lg:col-span-1 bg-white dark:bg-gray-800 p-4 rounded-xl shadow">
+        <aside className="lg:col-span-1 bg-white dark:bg-gray-800 p-4 rounded-xl max-h-max shadow">
           <h2 className="text-lg font-semibold mb-4">Filters</h2>
 
           <input
@@ -33,7 +33,7 @@ const Assignments = () => {
             placeholder="Search assignments..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full px-3 py-2 mb-4 rounded-md bg-gray-100 dark:bg-gray-700 focus:outline-none"
+            className="w-full text-gray-900 dark:text-white px-3 py-2 mb-4 rounded-md bg-gray-100 dark:bg-gray-700 focus:outline-none"
           />
 
           <label
@@ -56,8 +56,6 @@ const Assignments = () => {
         </aside>
 
         <section className="lg:col-span-3 space-y-4">
-          <h1 className="text-2xl font-bold mb-4">Assignments</h1>
-
           {loading ? (
             <p className="text-center">Loading...</p>
           ) : assignments.length === 0 ? (
