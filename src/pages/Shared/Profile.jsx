@@ -1,17 +1,17 @@
-import React, { useContext, useState, useRef, useEffect } from "react";
+import React, { useContext, useState, useRef, useEffect, use } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
-import { signOut } from "firebase/auth";
+
 import Swal from "sweetalert2";
 
 const Profile = () => {
-  const { auth, user } = useContext(AuthContext);
+  const { user, logOut } = use(AuthContext);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const handleLogout = () => {
-    signOut(auth)
+    logOut()
       .then(() => {
         Swal.fire({
           icon: "success",
@@ -52,7 +52,7 @@ const Profile = () => {
         <span className="text-sm font-medium text-gray-900 dark:text-white">
           {user?.displayName || "Guest"}
         </span>
-        {user ? (
+        {user?.photoURL ? (
           <img
             className="size-12 rounded-full"
             src={user.photoURL}
@@ -80,7 +80,7 @@ const Profile = () => {
             </Link>
             <button
               onClick={handleLogout}
-              className="w-full text-left px-4 py-2 text-sm text-gray-900 dark:text-white hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition duration-200 hover:scale-105"
+              className="w-full cursor-pointer text-left px-4 py-2 text-sm text-gray-900 dark:text-white hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition duration-200 hover:scale-105"
             >
               Log Out
             </button>
