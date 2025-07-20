@@ -1,8 +1,7 @@
 import React from "react";
 import { motion } from "motion/react";
 
-const MyAssignments = ({ isFetching, mySubmissions }) => {
-  console.log(mySubmissions);
+const MySubmissions = ({ isFetching, mySubmissions }) => {
   if (isFetching) {
     return (
       <h1 className="text-gray-900 flex justify-center items-center h-full dark:text-gray-100">
@@ -10,7 +9,7 @@ const MyAssignments = ({ isFetching, mySubmissions }) => {
       </h1>
     );
   }
-  if (mySubmissions.length === 0) {
+  if (mySubmissions?.length === 0) {
     return (
       <h1 className="text-gray-900 flex justify-center items-center h-full dark:text-gray-100">
         You have not submitted any assignments yet.
@@ -21,7 +20,7 @@ const MyAssignments = ({ isFetching, mySubmissions }) => {
   return (
     <div className="  max-h-[calc(100vh-10rem)] overflow-y-auto">
       <div className="grid gap-4">
-        {mySubmissions.map((submission, index) => (
+        {mySubmissions?.map((submission, index) => (
           <motion.div
             key={submission._id}
             initial={{ opacity: 0, x: 30 }}
@@ -60,4 +59,4 @@ const MyAssignments = ({ isFetching, mySubmissions }) => {
   );
 };
 
-export default MyAssignments;
+export default MySubmissions;

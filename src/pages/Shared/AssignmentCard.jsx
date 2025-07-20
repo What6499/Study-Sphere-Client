@@ -1,20 +1,47 @@
 import React from "react";
 import { useNavigate } from "react-router";
 
-import { getAuth } from "firebase/auth";
 import useAuth from "../../Context/AuthContext/useAuth";
+import Swal from "sweetalert2";
+import axios from "axios";
 
-const AssignmentCard = ({ assignment, handleDelete }) => {
+const AssignmentCard = ({ assignment, setAssignments, bg }) => {
   const { _id, thumbnail, title, marks, difficulty } = assignment;
   const { user } = useAuth();
-  console.log(assignment);
+
   const navigate = useNavigate();
   const handleView = () => {
     navigate(`/assignments/${assignment._id}`);
   };
+  const handleDelete = async (id) => {
+    const { data } = await axios.delete(
+      `http://localhost:5000/assignments/${id}`
+    );
+    if (data?.message === "Assignment deleted successfully") {
+      Swal.fire({
+        icon: "success",
+        title: "Deleted!",
+        text: "Assignment has been deleted.",
+        timer: 2000,
+        showConfirmButton: false,
+      });
+
+      setAssignments((prev) => prev.filter((a) => a._id !== id));
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Delete Failed",
+        text: "Assignment not found or could not be deleted.",
+      });
+    }
+  };
 
   return (
-    <div className="bg-white  dark:bg-gray-800  rounded-lg shadow-md flex justify-between items-center gap-4 transition hover:shadow-lg">
+    <div
+      className={`bg-white  ${
+        bg ? bg : "bg-gray-800"
+      }  rounded-lg shadow-md flex justify-between items-center gap-4 transition hover:shadow-lg`}
+    >
       <div className="px-4 flex gap-4">
         <img
           src={thumbnail}
@@ -49,7 +76,7 @@ const AssignmentCard = ({ assignment, handleDelete }) => {
           Update
         </button>
         <button
-          onClick={() => handleDelete(_id)}
+          onClick={handleDelete}
           disabled={user?.email !== assignment.creatorEmail}
           className="px-4 py-3 bg-red-400 hover:bg-red-500  disabled:bg-gray-400
     disabled:opacity-50

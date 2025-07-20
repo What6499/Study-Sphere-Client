@@ -9,28 +9,6 @@ const Assignments = () => {
   const [difficulty, setDifficulty] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const handleDelete = async (id) => {
-    const { data } = await axios.delete(
-      `http://localhost:5000/assignments/${id}`
-    );
-    if (data?.message === "Assignment deleted successfully") {
-      Swal.fire({
-        icon: "success",
-        title: "Deleted!",
-        text: "Assignment has been deleted.",
-        timer: 2000,
-        showConfirmButton: false,
-      });
-
-      setAssignments((prev) => prev.filter((a) => a._id !== id));
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Delete Failed",
-        text: "Assignment not found or could not be deleted.",
-      });
-    }
-  };
   useEffect(() => {
     const fetchAssignments = async () => {
       setLoading(true);
@@ -87,7 +65,7 @@ const Assignments = () => {
             <div className="space-y-4">
               {assignments.map((assignment) => (
                 <AssignmentCard
-                  handleDelete={handleDelete}
+                  setAssignments={setAssignments}
                   key={assignment._id}
                   assignment={assignment}
                 />
