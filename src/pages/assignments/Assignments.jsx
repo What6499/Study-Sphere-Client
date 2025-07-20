@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AssignmentCard from "../Shared/AssignmentCard";
+import Swal from "sweetalert2";
 
 const Assignments = () => {
   const [assignments, setAssignments] = useState([]);
@@ -8,6 +9,28 @@ const Assignments = () => {
   const [difficulty, setDifficulty] = useState("");
   const [loading, setLoading] = useState(true);
 
+  const handleDelete = async (id) => {
+    const { data } = await axios.delete(
+      `http://localhost:5000/assignments/${id}`
+    );
+    if (data?.message === "Assignment deleted successfully") {
+      Swal.fire({
+        icon: "success",
+        title: "Deleted!",
+        text: "Assignment has been deleted.",
+        timer: 2000,
+        showConfirmButton: false,
+      });
+
+      setAssignments((prev) => prev.filter((a) => a._id !== id));
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Delete Failed",
+        text: "Assignment not found or could not be deleted.",
+      });
+    }
+  };
   useEffect(() => {
     const fetchAssignments = async () => {
       setLoading(true);
@@ -64,11 +87,9 @@ const Assignments = () => {
             <div className="space-y-4">
               {assignments.map((assignment) => (
                 <AssignmentCard
+                  handleDelete={handleDelete}
                   key={assignment._id}
                   assignment={assignment}
-                  onView={(id) => console.log("View", id)}
-                  onUpdate={(id) => console.log("Update", id)}
-                  onDelete={(id) => console.log("Delete", id)}
                 />
               ))}
             </div>

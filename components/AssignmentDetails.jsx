@@ -3,10 +3,11 @@ import axios from "axios";
 import { useParams } from "react-router";
 import { AuthContext } from "../src/Context/AuthContext/AuthContext";
 import Swal from "sweetalert2";
+import useAuth from "../src/Context/AuthContext/useAuth";
 
 const AssignmentDetails = () => {
   const { id } = useParams();
-  const { user } = use(AuthContext);
+  const { user } = useAuth();
 
   const [assignment, setAssignment] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -41,6 +42,9 @@ const AssignmentDetails = () => {
           userEmail: user.email,
           googleLink: submission.googleLink,
           note: submission.note,
+          title: assignment.title,
+          marks: assignment.marks,
+          creatorName: assignment.creatorName,
           status: "pending",
         })
         .then((res) => {
@@ -167,8 +171,11 @@ const AssignmentDetails = () => {
 
           <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
             <button
+              disabled={user?.email === assignment.creatorEmail}
               onClick={() => setShowModal(true)}
-              className="px-8 py-3 bg-emerald-500 cursor-pointer text-white font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-75 text-lg"
+              className="px-8 py-3 bg-emerald-500 disabled:bg-gray-400
+    disabled:opacity-50
+    disabled:cursor-not-allowed cursor-pointer text-white font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-75 text-lg"
             >
               Take Assignment
             </button>

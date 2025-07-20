@@ -1,10 +1,8 @@
 import React from "react";
 import { motion } from "motion/react";
-import { useNavigate } from "react-router";
 
 const MyAssignments = ({ isFetching, mySubmissions }) => {
-  const navigate = useNavigate();
-
+  console.log(mySubmissions);
   if (isFetching) {
     return (
       <h1 className="text-gray-900 flex justify-center items-center h-full dark:text-gray-100">
@@ -50,35 +48,10 @@ const MyAssignments = ({ isFetching, mySubmissions }) => {
                   {submission.title || "Untitled Assignment"}
                 </h3>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  Marks: {submission.marks || "?"} | Difficulty:{" "}
-                  {submission.difficulty || "?"}
+                  Marks: {submission.receivedMark || "?"}/{submission.marks} |
+                  Status: {submission.status}
                 </p>
               </div>
-            </div>
-
-            <div className="flex flex-col md:flex-row gap-2 pr-4 py-4">
-              <button
-                onClick={() => navigate(`/assignments/${submission._id}`)}
-                className="px-2 py-1   hover:bg-white/30 text-white rounded"
-              >
-                View
-              </button>
-              <button
-                onClick={() =>
-                  navigate(`/assignments/update/${submission._id}`)
-                }
-                className="px-2 py-1  hover:bg-white/30 text-white rounded"
-              >
-                Update
-              </button>
-              <button
-                onClick={() =>
-                  navigate(`/assignments/update/${submission._id}`)
-                }
-                className="px-4 py-3  hover:bg-white/30 text-white rounded"
-              >
-                Delete
-              </button>
             </div>
           </motion.div>
         ))}

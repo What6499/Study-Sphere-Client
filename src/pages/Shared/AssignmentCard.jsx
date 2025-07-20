@@ -1,13 +1,18 @@
 import React from "react";
 import { useNavigate } from "react-router";
 
-const AssignmentCard = ({ assignment }) => {
-  const { _id, thumbnail, title, marks, difficulty } = assignment;
-  const navigate = useNavigate();
+import { getAuth } from "firebase/auth";
+import useAuth from "../../Context/AuthContext/useAuth";
 
+const AssignmentCard = ({ assignment, handleDelete }) => {
+  const { _id, thumbnail, title, marks, difficulty } = assignment;
+  const { user } = useAuth();
+  console.log(assignment);
+  const navigate = useNavigate();
   const handleView = () => {
     navigate(`/assignments/${assignment._id}`);
   };
+
   return (
     <div className="bg-white  dark:bg-gray-800  rounded-lg shadow-md flex justify-between items-center gap-4 transition hover:shadow-lg">
       <div className="px-4 flex gap-4">
@@ -35,14 +40,20 @@ const AssignmentCard = ({ assignment }) => {
           View
         </button>
         <button
-          onClick={() => console.log("up", _id)}
-          className="px-2 py-1 bg-orange-400 hover:bg-orange-500 cursor-pointer dark:bg-white/20 text-white rounded"
+          disabled={user?.email !== assignment.creatorEmail}
+          onClick={() => navigate(`/update-assignment/${_id}`)}
+          className="px-2 py-1 bg-orange-400 hover:bg-orange-500 disabled:bg-gray-400
+    disabled:opacity-50
+    disabled:cursor-not-allowed cursor-pointer dark:bg-white/20 text-white rounded"
         >
           Update
         </button>
         <button
-          onClick={() => console.log("del", _id)}
-          className="px-4 py-3 bg-red-400 hover:bg-red-500 cursor-pointer dark:bg-white/20 text-white rounded"
+          onClick={() => handleDelete(_id)}
+          disabled={user?.email !== assignment.creatorEmail}
+          className="px-4 py-3 bg-red-400 hover:bg-red-500  disabled:bg-gray-400
+    disabled:opacity-50
+    disabled:cursor-not-allowed cursor-pointer dark:bg-white/20 text-white rounded"
         >
           Delete
         </button>

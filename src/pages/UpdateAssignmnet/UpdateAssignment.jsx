@@ -1,9 +1,16 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router";
 import axios from "axios";
 import useAuth from "../../Context/AuthContext/useAuth";
+import Swal from "sweetalert2";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const UpdateAssignment = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const { user } = useAuth();
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -12,12 +19,38 @@ const UpdateAssignment = () => {
     difficulty: "",
     dueDate: new Date(),
   });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAssignment = async () => {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:5000/assignments/${id}`
+        );
+
+        setFormData({
+          title: data.title || "",
+          description: data.description || "",
+          marks: data.marks || "",
+          thumbnail: data.thumbnail || "",
+          difficulty: data.difficulty || "",
+          dueDate: new Date(data.dueDate),
+        });
+      } catch (err) {
+        console.error("Failed to load assignment:", err);
+        Swal.fire("Error", "Could not load assignment", "error");
+        navigate(-1);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchAssignment();
+  }, [id, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((f) => ({ ...f, [name]: value }));
   };
-
   const handleDateChange = (date) => {
     setFormData((f) => ({ ...f, dueDate: date }));
   };
@@ -29,30 +62,29 @@ const UpdateAssignment = () => {
       ...formData,
       creatorEmail: user.email,
       creatorName: user.displayName || "",
-      dueDate: formData.dueDate.toString(),
+      dueDate: formData.dueDate.toISOString(),
     };
 
-    axios.post("http://localhost:5000/assignments", assignment).then((res) => {
-      if (res.data.insertedId) {
-        Swal.fire("Success", res.message || "Assignment created!", "success");
-      }
+    const { data } = await axios.put(
+      `http://localhost:5000/update-assignment/${id}`,
+      assignment
+    );
 
-      setFormData({
-        title: "",
-        description: "",
-        marks: "",
-        thumbnail: "",
-        difficulty: "",
-        dueDate: new Date(),
-      });
-    });
+    if (data.modifiedCount || data.matchedCount) {
+      Swal.fire("Success", "Assignment updated!", "success");
+      navigate("/dashboard");
+    }
   };
+
+  if (loading) {
+    return <p className="pt-24 text-center">Loading assignment…</p>;
+  }
 
   return (
     <div className="min-h-screen pt-24 px-4 md:px-6 lg:px-8 bg-gray-100 dark:bg-gray-900 transition-colors">
-      <div className="max-w-3xl mx-auto mt-10 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg transition-colors">
+      <div className="max-w-3xl mx-auto mt-10 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-          Create Assignment
+          Update Assignment
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
@@ -60,31 +92,29 @@ const UpdateAssignment = () => {
             value={formData.title}
             onChange={handleChange}
             placeholder="Title"
-            className="w-full p-2 rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
             required
+            className="w-full p-2 rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
           />
+
           <textarea
             name="description"
             value={formData.description}
             onChange={handleChange}
             placeholder="Description"
-            className="w-full p-2 rounded
-+             bg-gray-50 dark:bg-gray-700
-+             text-gray-900 dark:text-gray-100
-+             placeholder-gray-500 dark:placeholder-gray-400
-+             border border-gray-200 dark:border-gray-600
-+             transition-colors"
             required
+            className="w-full p-2 rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
           />
+
           <input
             name="marks"
             type="number"
             value={formData.marks}
             onChange={handleChange}
             placeholder="Marks"
-            className="w-full p-2 rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
             required
+            className="w-full p-2 rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
           />
+
           <input
             name="thumbnail"
             value={formData.thumbnail}
@@ -92,18 +122,20 @@ const UpdateAssignment = () => {
             placeholder="Thumbnail Image URL"
             className="w-full p-2 rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
           />
+
           <select
             name="difficulty"
             value={formData.difficulty}
             onChange={handleChange}
-            className="w-full p-2 rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
             required
+            className="w-full p-2 rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
           >
             <option value="">Select Difficulty</option>
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
           </select>
+
           <DatePicker
             selected={formData.dueDate}
             onChange={handleDateChange}
@@ -111,11 +143,12 @@ const UpdateAssignment = () => {
             className="w-full p-2 rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
             required
           />
+
           <button
             type="submit"
-            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded transition-colors"
+            className="w-full p-2 rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
           >
-            Submit Assignment
+            Update Assignment
           </button>
         </form>
       </div>

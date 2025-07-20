@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
-import MyAssignments from "./MySubmissions";
+
 import useAuth from "../src/Context/AuthContext/useAuth";
 import axios from "axios";
-
+import MyProgress from "./MyProgress";
+import { useLocation } from "react-router";
+import MySubmissions from "./MySubmissions";
+import Swal from "sweetalert2";
 const Dashboard = () => {
-  const [tab, setTab] = useState("my-submissions");
+  const location = useLocation();
+  const initialTab = location.state?.tab || "my-submissions";
+  const [tab, setTab] = useState(initialTab);
   const [mySubmissions, setMySubmissions] = useState([]);
+  const [myProgress, setMyProgress] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
   const { user, loading } = useAuth();
 
@@ -44,10 +50,10 @@ const Dashboard = () => {
         });
         const { data } = response;
         console.log("Fetched submissions:", data);
-        setMySubmissions(data);
+        setMyProgress(data);
         setIsFetching(false);
       } catch (err) {
-        console.error("Error fetching submissions:", err);
+        console.error(err);
       }
     };
 
@@ -87,13 +93,24 @@ const Dashboard = () => {
           </div>
           <div className="w-3/4 rounded-lg  ">
             <h2 className="text-3xl mb-3 text-center text-light-primary font-logo dark:text-white font-bold ">
-              Your Submissions
+              {tab === "my-progress"
+                ? "Your Progress"
+                : tab === "my-assignments"
+                ? "Your Assignments"
+                : "Your Submissions"}
             </h2>
             <div className="bg-gray-200/50 dark:bg-gray-800 p-4 rounded-lg">
-              <MyAssignments
-                isFetching={isFetching}
-                mySubmissions={mySubmissions}
-              ></MyAssignments>
+              {tab === "my-submissions" && (
+                <MySubmissions
+                  isFetching={isFetching}
+                  mySubmissions={mySubmissions}
+                  setMySubmissions={setMySubmissions}
+                />
+              )}
+
+              {tab === "my-progress" && (
+                <MyProgress progressData={myProgress} />
+              )}
             </div>
           </div>
         </div>

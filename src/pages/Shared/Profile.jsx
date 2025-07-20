@@ -45,6 +45,9 @@ const Profile = () => {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
+  const handleMySubmissions = () => {
+    navigate("/dashboard", { state: { tab: "my-submissions" } });
+  };
   return (
     <div className="relative" ref={dropdownRef}>
       <div
@@ -76,10 +79,11 @@ const Profile = () => {
               Create Assignment
             </Link>
             <Link
-              to="/my-assignments"
+              onClick={handleMySubmissions}
+              to="/dashboard"
               className="block px-4 py-2 text-sm text-gray-900 dark:text-white hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition duration-200 hover:scale-105"
             >
-              My Assignments
+              My Submissions
             </Link>
             <button
               onClick={handleLogout}
