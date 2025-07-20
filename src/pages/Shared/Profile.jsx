@@ -52,17 +52,17 @@ const Profile = () => {
     <div className="relative" ref={dropdownRef}>
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-4 py-2 bg-white/60 dark:bg-gray-800/60 rounded-full cursor-pointer hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition duration-200"
+        className="flex items-center gap-2 px-4 py-2 w-max bg-white/60 dark:bg-gray-800/60 rounded-full cursor-pointer hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition duration-200"
       >
         <span className="text-sm font-medium text-gray-900 dark:text-white">
           {user?.displayName || "Guest"}
         </span>
         {user?.photoURL ? (
           <img
-            className="size-12 rounded-full"
             src={user.photoURL}
             alt="profile"
-            referrerPolicy="no-referer-policy"
+            referrerPolicy="no-referrer"
+            className="w-8 h-8 rounded-full "
           />
         ) : (
           <span className="text-gray-600 dark:text-gray-300">👤</span>

@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../Context/AuthContext/useAuth";
 import axios from "axios";
+import SocialLogin from "./SocialLogin";
 
 const SignIn = ({ toggleAuth }) => {
   const { signIn } = useAuth();
@@ -107,6 +108,7 @@ const SignIn = ({ toggleAuth }) => {
           Register
         </button>
       </p>
+      <SocialLogin></SocialLogin>
     </div>
   );
 };

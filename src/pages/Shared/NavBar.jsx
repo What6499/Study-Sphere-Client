@@ -57,7 +57,13 @@ const NavBar = () => {
       <div className="navbar container mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div
+              tabIndex={0}
+              role="button"
+              className={`btn btn-ghost text-white ${
+                location.pathname !== "/" ? "text-black dark:text-white" : ""
+              }  lg:hidden`}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -75,14 +81,24 @@ const NavBar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-gray-800 rounded-box z-10 mt-3 w-52 p-2 shadow"
             >
+              <a
+                href="/"
+                className={`cursor-pointer font-logo font-bold text-xl mb-4 text-center transition-colors duration-300 ${
+                  scrolled || location.pathname !== "/"
+                    ? "text-light-primary dark:text-white"
+                    : "text-white"
+                }`}
+              >
+                StudySphere
+              </a>
               {navItems.map((item) => (
                 <li key={item.name}>
                   <NavLink
                     to={item.path}
                     className={({ isActive }) =>
-                      `transition-colors duration-300 text-white ${
+                      `transition-colors duration-300 text-white  ${
                         isActive ? "text-[#4BCCA8] font-semibold" : ""
                       } `
                     }
@@ -95,7 +111,7 @@ const NavBar = () => {
           </div>
           <a
             href="/"
-            className={`cursor-pointer font-logo font-bold text-4xl  transition-colors duration-300 ${
+            className={`cursor-pointer hidden md:block font-logo font-bold text-4xl  transition-colors duration-300 ${
               scrolled || location.pathname !== "/"
                 ? "text-light-primary dark:text-white"
                 : "text-white"
@@ -130,7 +146,7 @@ const NavBar = () => {
           </ul>
         </div>
 
-        <div className="navbar-end max-w-max ml-4 space-x-4 flex items-center">
+        <div className="flex-1 flex justify-end space-x-4 items-center">
           <button
             onClick={darkToggle}
             className="text-4xl rounded-full cursor-pointer "
@@ -151,7 +167,7 @@ const NavBar = () => {
             <Profile></Profile>
           ) : (
             <Link to="auth">
-              <button className="px-4 py-2 cursor-pointer rounded-md  bg-emerald-400 text-white border-none hover:bg-emerald-500 flex items-center justify-center">
+              <button className="px-4 w-max py-2 cursor-pointer rounded-md  bg-emerald-400 text-white border-none hover:bg-emerald-500 flex items-center justify-center">
                 Sign In
               </button>
             </Link>
