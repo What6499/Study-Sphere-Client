@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router";
 
 import Swal from "sweetalert2";
 import useAuth from "../../Context/AuthContext/useAuth";
+import axios from "axios";
 
 const SignIn = ({ toggleAuth }) => {
   const { signIn } = useAuth();
@@ -25,7 +26,13 @@ const SignIn = ({ toggleAuth }) => {
     };
 
     signIn(email, password)
-      .then(() => {
+      .then(async (res) => {
+        const user = res.user;
+
+        await axios.post("http://localhost:5000/users", {
+          email: user.email,
+        });
+        console.log(res);
         Swal.fire({
           icon: "success",
           title: "Signed In!",
