@@ -34,24 +34,31 @@ const Dashboard = () => {
 
   return (
     <div className="pt-24 bg-gray-100 dark:bg-gray-900 min-h-screen">
-      <div className="max-w-7xl flex gap-4 mx-auto">
-        <div className="w-1/4 bg-white/60 dark:bg-gray-800 rounded-lg dark:text-gray-100 text-gray-900 text-center ">
-          {" "}
-          <div className="w-full rounded-md px-4 py-3 hover:bg-gray-500/20">
-            My Progress
+      <div className="max-w-7xl mx-auto">
+        <div className=" flex  gap-4 ">
+          <div className="flex flex-col w-1/4">
+            <h1 className="text-4xl mb-2 font-logo text-light-primary dark:text-white font-bold">
+              Dashboard
+            </h1>
+            <div className="w-full bg-white/60 dark:bg-gray-800 rounded-lg  text-light-primary dark:text-white text-center max-h-max">
+              {" "}
+              <div className="w-full rounded-md px-4 py-3 hover:bg-gray-500/20">
+                My Progress
+              </div>
+              <div className="w-full rounded-md px-4 py-3 hover:bg-gray-500/20">
+                My Submissions
+              </div>
+              <div className="w-full rounded-md px-4 py-3 hover:bg-gray-500/20">
+                My Assignments
+              </div>
+            </div>
           </div>
-          <div className="w-full rounded-md px-4 py-3 hover:bg-gray-500/20">
-            My Submissions
+          <div className="w-3/4 rounded-lg">
+            <MyAssignments
+              isFetching={isFetching}
+              mySubmissions={mySubmissions}
+            ></MyAssignments>
           </div>
-          <div className="w-full rounded-md px-4 py-3 hover:bg-gray-500/20">
-            My Assignments
-          </div>
-        </div>
-        <div className="w-3/4 rounded-lg">
-          <MyAssignments
-            isFetching={isFetching}
-            mySubmissions={mySubmissions}
-          ></MyAssignments>
         </div>
       </div>
     </div>

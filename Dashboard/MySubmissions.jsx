@@ -1,6 +1,5 @@
-import axios from "axios";
-import React, { use, useEffect, useState } from "react";
-
+import React from "react";
+import { motion } from "motion/react";
 import { useNavigate } from "react-router";
 
 const MyAssignments = ({ isFetching, mySubmissions }) => {
@@ -24,16 +23,23 @@ const MyAssignments = ({ isFetching, mySubmissions }) => {
   }
 
   return (
-    <div className="p-4  min-h-screen">
-      <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
-        My Submissions ({mySubmissions.length}) / Total ({})
+    <div className="  min-h-screen">
+      <h2 className="text-3xl mb-3 text-center text-light-primary font-logo dark:text-white font-bold ">
+        Your Submissions
       </h2>
 
       <div className="grid gap-4">
-        {mySubmissions.map((submission) => (
-          <div
+        {mySubmissions.map((submission, index) => (
+          <motion.div
             key={submission._id}
-            className="bg-white dark:bg-gray-900 rounded-lg shadow-md flex justify-between items-center gap-4 p-4 hover:shadow-lg transition"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              duration: 0.4,
+              delay: index * 0.1,
+              ease: "easeOut",
+            }}
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-md flex justify-between items-center gap-4 p-4 hover:shadow-lg transition"
           >
             <div className="flex gap-4 items-center">
               <img
@@ -46,7 +52,7 @@ const MyAssignments = ({ isFetching, mySubmissions }) => {
               />
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                <h3 className="text-lg font-semibold text-light-primary dark:text-white">
                   {submission.title || "Untitled Assignment"}
                 </h3>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
@@ -76,7 +82,7 @@ const MyAssignments = ({ isFetching, mySubmissions }) => {
                 Delete
               </button>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
