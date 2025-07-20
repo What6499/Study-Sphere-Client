@@ -1,11 +1,11 @@
-import React, { use } from "react";
+import React from "react";
 import { useNavigate, useLocation } from "react-router";
-import { AuthContext } from "../../Context/AuthContext/AuthContext";
 
 import Swal from "sweetalert2";
+import useAuth from "../../Context/AuthContext/useAuth";
 
 const SignIn = ({ toggleAuth }) => {
-  const { signIn } = use(AuthContext);
+  const { signIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";

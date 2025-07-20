@@ -1,15 +1,16 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
 import { Link, NavLink, useLocation } from "react-router";
-import { AuthContext } from "../../Context/AuthContext/AuthContext";
+
 import Profile from "./Profile";
+import useAuth from "../../Context/AuthContext/useAuth";
 
 const NavBar = () => {
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("darkMode");
   });
-  const { user } = use(AuthContext);
+  const { user } = useAuth();
   const [scrolled, setScrolled] = useState(false);
 
   const location = useLocation();

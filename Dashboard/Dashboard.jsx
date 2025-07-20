@@ -1,8 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MyAssignments from "./MySubmissions";
+import useAuth from "../src/Context/AuthContext/useAuth";
+import axios from "axios";
 
 const Dashboard = () => {
-  const [tab, setTab] = useState("my-progress");
+  const [tab, setTab] = useState("my-submissions");
+  const [mySubmissions, setMySubmissions] = useState([]);
+  const [isFetching, setIsFetching] = useState(true);
+  const { user, loading } = useAuth();
+
+  useEffect(() => {
+    if (loading || !user) return;
+    if (tab !== "my-submissions") return;
+    const fetchSubmissions = async () => {
+      setIsFetching(true);
+      try {
+        const response = await axios.get("http://localhost:5000/submissions", {
+          headers: {
+            Authorization: `Bearer ${user.accessToken}`,
+          },
+        });
+        const { data } = response;
+        console.log("Fetched submissions:", data);
+        setMySubmissions(data);
+        setIsFetching(false);
+      } catch (err) {
+        console.error("Error fetching submissions:", err);
+      }
+    };
+
+    fetchSubmissions();
+  }, [tab, user, loading]);
 
   return (
     <div className="pt-24 bg-gray-100 dark:bg-gray-900 min-h-screen">
@@ -19,8 +47,11 @@ const Dashboard = () => {
             My Assignments
           </div>
         </div>
-        <div className="w-3/4 rounded-lg bg-gray-800">
-          <MyAssignments></MyAssignments>
+        <div className="w-3/4 rounded-lg">
+          <MyAssignments
+            isFetching={isFetching}
+            mySubmissions={mySubmissions}
+          ></MyAssignments>
         </div>
       </div>
     </div>

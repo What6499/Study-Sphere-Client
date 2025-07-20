@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import { AuthContext } from "./AuthContext";
 import {
   createUserWithEmailAndPassword,
@@ -24,7 +25,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log("Auth state changed:", currentUser);
+
       setLoading(false);
     });
 

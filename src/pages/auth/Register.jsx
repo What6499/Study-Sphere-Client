@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate, useLocation } from "react-router";
-import { AuthContext } from "../../Context/AuthContext/AuthContext";
+
 import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
+import useAuth from "../../Context/AuthContext/useAuth";
 
 const Register = ({ toggleAuth }) => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
