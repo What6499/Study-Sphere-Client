@@ -7,17 +7,17 @@ const Assignments = () => {
   const [assignments, setAssignments] = useState([]);
   const [search, setSearch] = useState("");
   const [difficulty, setDifficulty] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [dataLoading, setDataLoading] = useState(true);
 
   useEffect(() => {
     const fetchAssignments = async () => {
-      setLoading(true);
+      setDataLoading(true);
       const query = `?search=${search}&difficulty=${difficulty}`;
       const { data } = await axios.get(
         `http://localhost:5000/assignments${query}`
       );
       setAssignments(data);
-      setLoading(false);
+      setDataLoading(false);
     };
 
     fetchAssignments();
@@ -57,7 +57,7 @@ const Assignments = () => {
         </aside>
 
         <section className="lg:col-span-3 space-y-4">
-          {loading ? (
+          {dataLoading ? (
             <p className="text-center">Loading...</p>
           ) : assignments.length === 0 ? (
             <p className="text-center text-gray-500">No assignments found.</p>

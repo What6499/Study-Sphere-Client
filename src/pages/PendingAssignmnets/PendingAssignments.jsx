@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import useAuth from "../../Context/AuthContext/useAuth";
-
+import { motion } from "motion/react";
 const PendingAssignments = () => {
   const [pendingSubmissions, setPendingSubmissions] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
@@ -10,9 +10,9 @@ const PendingAssignments = () => {
   const [selected, setSelected] = useState(null);
   const [markValue, setMarkValue] = useState("");
   const [feedback, setFeedback] = useState("");
-  const { user } = useAuth();
-
+  const { user, loading } = useAuth();
   useEffect(() => {
+    if (loading) return;
     const fetchPending = async () => {
       setIsFetching(true);
       try {
@@ -29,7 +29,7 @@ const PendingAssignments = () => {
       }
     };
     fetchPending();
-  }, [search]);
+  }, [search, loading]);
 
   const submitMark = async (e) => {
     e.preventDefault();
@@ -79,8 +79,15 @@ const PendingAssignments = () => {
             </h1>
           ) : (
             <div className="space-y-4">
-              {pendingSubmissions.map((submission) => (
-                <div
+              {pendingSubmissions.map((submission, index) => (
+                <motion.div
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{
+                    duration: 0.1,
+                    delay: index * 0.2,
+                    ease: "easeIn",
+                  }}
                   key={submission._id}
                   className="p-4 bg-white dark:bg-gray-800 rounded-lg shadow flex justify-between items-center"
                 >
@@ -92,7 +99,7 @@ const PendingAssignments = () => {
                       By: {submission.userEmail}
                     </p>
                   </div>
-                  {user.email == !submission.userEmail && (
+                  {user.email !== submission.userEmail && (
                     <button
                       onClick={() => setSelected(submission)}
                       className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded"
@@ -100,7 +107,7 @@ const PendingAssignments = () => {
                       Give Mark
                     </button>
                   )}
-                </div>
+                </motion.div>
               ))}
             </div>
           )}
@@ -110,10 +117,10 @@ const PendingAssignments = () => {
       {selected && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg w-full max-w-md">
-            <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            <h1 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
               Mark Submission
-            </h2>
-
+            </h1>
+            <h1 className="text-gray-500">Maximum Score:{selected.marks}</h1>
             <p className="mb-2">
               <a
                 href={selected.googleLink}
@@ -133,7 +140,8 @@ const PendingAssignments = () => {
                 </label>
                 <input
                   type="number"
-                  min="0"
+                  min={0}
+                  max={selected.marks}
                   value={markValue}
                   onChange={(e) => setMarkValue(e.target.value)}
                   className="mt-1 w-full px-3 py-2 bg-gray-100 dark:bg-gray-700 rounded"
@@ -146,6 +154,7 @@ const PendingAssignments = () => {
                 </label>
                 <textarea
                   value={feedback}
+                  minLength={10}
                   onChange={(e) => setFeedback(e.target.value)}
                   className="mt-1 w-full px-3 py-2 bg-gray-100 dark:bg-gray-700 rounded"
                   rows="4"

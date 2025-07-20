@@ -63,15 +63,16 @@ const CreateAssignment = () => {
             value={formData.title}
             onChange={handleChange}
             placeholder="Title"
-            className="w-full p-2 rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
+            className="w-full p-2 rounded focus:outline-none bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
             required
           />
           <textarea
             name="description"
             value={formData.description}
+            minLength={40}
             onChange={handleChange}
             placeholder="Description"
-            className="w-full p-2 rounded
+            className="w-full p-2 rounded focus:outline-none
 +             bg-gray-50 dark:bg-gray-700
 +             text-gray-900 dark:text-gray-100
 +             placeholder-gray-500 dark:placeholder-gray-400
@@ -85,7 +86,7 @@ const CreateAssignment = () => {
             value={formData.marks}
             onChange={handleChange}
             placeholder="Marks"
-            className="w-full p-2 rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
+            className="w-full p-2 rounded focus:outline-none bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
             required
           />
           <input
@@ -93,13 +94,13 @@ const CreateAssignment = () => {
             value={formData.thumbnail}
             onChange={handleChange}
             placeholder="Thumbnail Image URL"
-            className="w-full p-2 rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
+            className="w-full p-2 rounded focus:outline-none bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
           />
           <select
             name="difficulty"
             value={formData.difficulty}
             onChange={handleChange}
-            className="w-full p-2 rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
+            className="w-full p-2 rounded focus:outline-none bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
             required
           >
             <option value="">Select Difficulty</option>
@@ -111,12 +112,12 @@ const CreateAssignment = () => {
             selected={formData.dueDate}
             onChange={handleDateChange}
             dateFormat="yyyy-MM-dd"
-            className="w-full p-2 rounded bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
+            className="w-full p-2 rounded focus:outline-none bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
             required
           />
           <button
             type="submit"
-            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded transition-colors"
+            className="w-full bg-emerald-600 focus:outline-none hover:bg-emerald-700 text-white py-2 rounded transition-colors"
           >
             Submit Assignment
           </button>

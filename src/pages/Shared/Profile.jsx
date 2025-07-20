@@ -73,6 +73,12 @@ const Profile = () => {
         <div className="absolute right-0 mt-2 w-48 bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-md shadow-lg z-50">
           <div className="py-2">
             <Link
+              to="/dashboard"
+              className="block px-4 py-2 text-sm text-gray-900 dark:text-white hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition duration-200 hover:scale-105"
+            >
+              Dashboard
+            </Link>
+            <Link
               to="/create-assignment"
               className="block px-4 py-2 text-sm text-gray-900 dark:text-white hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition duration-200 hover:scale-105"
             >
@@ -85,6 +91,7 @@ const Profile = () => {
             >
               My Submissions
             </Link>
+
             <button
               onClick={handleLogout}
               className="w-full cursor-pointer text-left px-4 py-2 text-sm text-gray-900 dark:text-white hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition duration-200 hover:scale-105"

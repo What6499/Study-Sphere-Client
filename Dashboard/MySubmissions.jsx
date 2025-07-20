@@ -18,17 +18,17 @@ const MySubmissions = ({ isFetching, mySubmissions }) => {
   }
 
   return (
-    <div className="  max-h-[calc(100vh-10rem)] overflow-y-auto">
+    <div className="  max-h-[calc(100vh-10rem)] overflow-y-auto overflow-x-hidden">
       <div className="grid gap-4">
         {mySubmissions?.map((submission, index) => (
           <motion.div
             key={submission._id}
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{
               duration: 0.1,
               delay: index * 0.2,
-              ease: "easeOut",
+              ease: "easeIn",
             }}
             className="bg-white dark:bg-gray-900 rounded-lg shadow-md flex justify-between items-center gap-4 p-4 hover:shadow-lg transition"
           >
