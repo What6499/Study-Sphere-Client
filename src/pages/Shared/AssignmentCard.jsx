@@ -30,19 +30,19 @@ const AssignmentCard = ({ assignment }) => {
       <div className="flex flex-col md:flex-row gap-2 pr-4 py-4">
         <button
           onClick={handleView}
-          className="px-2 py-1   hover:bg-white/30 text-white rounded"
+          className="px-2 py-1  bg-blue-400 hover:bg-blue-500 dark:bg-white/20 cursor-pointer text-white rounded"
         >
           View
         </button>
         <button
           onClick={() => console.log("up", _id)}
-          className="px-2 py-1  hover:bg-white/30 text-white rounded"
+          className="px-2 py-1 bg-orange-400 hover:bg-orange-500 cursor-pointer dark:bg-white/20 text-white rounded"
         >
           Update
         </button>
         <button
           onClick={() => console.log("del", _id)}
-          className="px-4 py-3  hover:bg-white/30 text-white rounded"
+          className="px-4 py-3 bg-red-400 hover:bg-red-500 cursor-pointer dark:bg-white/20 text-white rounded"
         >
           Delete
         </button>

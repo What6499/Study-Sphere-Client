@@ -21,11 +21,7 @@ const MyAssignments = ({ isFetching, mySubmissions }) => {
   }
 
   return (
-    <div className="  min-h-screen">
-      <h2 className="text-3xl mb-3 text-center text-light-primary font-logo dark:text-white font-bold ">
-        Your Submissions
-      </h2>
-
+    <div className="  max-h-[calc(100vh-10rem)] overflow-y-auto">
       <div className="grid gap-4">
         {mySubmissions.map((submission, index) => (
           <motion.div
@@ -37,7 +33,7 @@ const MyAssignments = ({ isFetching, mySubmissions }) => {
               delay: index * 0.2,
               ease: "easeOut",
             }}
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-md flex justify-between items-center gap-4 p-4 hover:shadow-lg transition"
+            className="bg-white dark:bg-gray-900 rounded-lg shadow-md flex justify-between items-center gap-4 p-4 hover:shadow-lg transition"
           >
             <div className="flex gap-4 items-center">
               <img

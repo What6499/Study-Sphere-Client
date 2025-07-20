@@ -4,6 +4,8 @@ import { useNavigate, useLocation } from "react-router";
 import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
 import useAuth from "../../Context/AuthContext/useAuth";
+import axios from "axios";
+import SocialLogin from "./SocialLogin";
 
 const Register = ({ toggleAuth }) => {
   const { createUser } = useAuth();
@@ -38,16 +40,17 @@ const Register = ({ toggleAuth }) => {
     };
 
     createUser(email, password)
-      .then((result) => {
-        console.log("User created:", result.user);
+      .then(async (result) => {
         const user = result.user;
+        await axios.post("http://localhost:5000/users", {
+          email: user.email,
+        });
         return updateProfile(user, {
           displayName: name,
           photoURL: photoURL || null,
         });
       })
       .then(() => {
-        console.log("Profile updated, showing success popup");
         Swal.fire({
           icon: "success",
           title: "Account Created!",
@@ -55,7 +58,6 @@ const Register = ({ toggleAuth }) => {
           timer: 2000,
           showConfirmButton: false,
         }).then(() => {
-          console.log("Redirecting to:", from);
           navigate(from, { replace: true });
         });
       })
@@ -151,6 +153,7 @@ const Register = ({ toggleAuth }) => {
           Sign In
         </button>
       </p>
+      <SocialLogin></SocialLogin>
     </div>
   );
 };

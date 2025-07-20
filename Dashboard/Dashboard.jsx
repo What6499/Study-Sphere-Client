@@ -31,33 +31,70 @@ const Dashboard = () => {
 
     fetchSubmissions();
   }, [tab, user, loading]);
+  useEffect(() => {
+    if (loading || !user) return;
+    if (tab !== "my-progress") return;
+    const fetchSubmissions = async () => {
+      setIsFetching(true);
+      try {
+        const response = await axios.get("http://localhost:5000/my-progress", {
+          headers: {
+            Authorization: `Bearer ${user.accessToken}`,
+          },
+        });
+        const { data } = response;
+        console.log("Fetched submissions:", data);
+        setMySubmissions(data);
+        setIsFetching(false);
+      } catch (err) {
+        console.error("Error fetching submissions:", err);
+      }
+    };
 
+    fetchSubmissions();
+  }, [tab, user, loading]);
+  const handleTabSwitch = (tab) => {
+    setTab(tab);
+  };
   return (
     <div className="pt-24 bg-gray-100 dark:bg-gray-900 min-h-screen">
       <div className="max-w-7xl mx-auto">
-        <div className=" flex  gap-4 ">
+        <div className=" flex   gap-4 ">
           <div className="flex flex-col w-1/4">
             <h1 className="text-4xl mb-2 font-logo text-light-primary dark:text-white font-bold">
               Dashboard
             </h1>
-            <div className="w-full bg-white/60 dark:bg-gray-800 rounded-lg  text-light-primary dark:text-white text-center max-h-max">
-              {" "}
-              <div className="w-full rounded-md px-4 py-3 hover:bg-gray-500/20">
+            <div className="w-full  dark:bg-gray-800 rounded-lg bg-white text-light-primary dark:text-white text-center max-h-max">
+              <div
+                onClick={() => handleTabSwitch("my-progress")}
+                className="w-full rounded-md px-4 py-3 hover:bg-gray-500/20"
+              >
                 My Progress
               </div>
-              <div className="w-full rounded-md px-4 py-3 hover:bg-gray-500/20">
+              <div
+                onClick={() => handleTabSwitch("my-submissions")}
+                className="w-full rounded-md px-4 py-3 hover:bg-gray-500/20"
+              >
                 My Submissions
               </div>
-              <div className="w-full rounded-md px-4 py-3 hover:bg-gray-500/20">
+              <div
+                onClick={() => handleTabSwitch("my-assignments")}
+                className="w-full rounded-md px-4 py-3 hover:bg-gray-500/20"
+              >
                 My Assignments
               </div>
             </div>
           </div>
-          <div className="w-3/4 rounded-lg">
-            <MyAssignments
-              isFetching={isFetching}
-              mySubmissions={mySubmissions}
-            ></MyAssignments>
+          <div className="w-3/4 rounded-lg  ">
+            <h2 className="text-3xl mb-3 text-center text-light-primary font-logo dark:text-white font-bold ">
+              Your Submissions
+            </h2>
+            <div className="bg-gray-200/50 dark:bg-gray-800 p-4 rounded-lg">
+              <MyAssignments
+                isFetching={isFetching}
+                mySubmissions={mySubmissions}
+              ></MyAssignments>
+            </div>
           </div>
         </div>
       </div>

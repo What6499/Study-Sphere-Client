@@ -48,7 +48,7 @@ const NavBar = () => {
   ];
   return (
     <div
-      className={`fixed w-full top-0 left-0 z-50 transition-all duration-300${
+      className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ${
         scrolled || location.pathname !== "/"
           ? "bg-[#F5F5F5] shadow-md dark:bg-gray-900"
           : "bg-transparent"

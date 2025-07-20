@@ -59,6 +59,7 @@ const Profile = () => {
             className="size-12 rounded-full"
             src={user.photoURL}
             alt="profile"
+            referrerPolicy="no-referer-policy"
           />
         ) : (
           <span className="text-gray-600 dark:text-gray-300">👤</span>
