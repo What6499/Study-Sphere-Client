@@ -4,9 +4,7 @@ import { useNavigate } from "react-router";
 
 const MyAssignments = ({ isFetching, mySubmissions }) => {
   const navigate = useNavigate();
-  const handleView = () => {
-    navigate(`/assignments/${mySubmissions._id}`);
-  };
+
   if (isFetching) {
     return (
       <h1 className="text-gray-900 flex justify-center items-center h-full dark:text-gray-100">
@@ -32,11 +30,11 @@ const MyAssignments = ({ isFetching, mySubmissions }) => {
         {mySubmissions.map((submission, index) => (
           <motion.div
             key={submission._id}
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{
-              duration: 0.4,
-              delay: index * 0.1,
+              duration: 0.1,
+              delay: index * 0.2,
               ease: "easeOut",
             }}
             className="bg-white dark:bg-gray-800 rounded-lg shadow-md flex justify-between items-center gap-4 p-4 hover:shadow-lg transition"
@@ -64,19 +62,23 @@ const MyAssignments = ({ isFetching, mySubmissions }) => {
 
             <div className="flex flex-col md:flex-row gap-2 pr-4 py-4">
               <button
-                onClick={handleView}
+                onClick={() => navigate(`/assignments/${submission._id}`)}
                 className="px-2 py-1   hover:bg-white/30 text-white rounded"
               >
                 View
               </button>
               <button
-                onClick={() => console.log("up", _id)}
+                onClick={() =>
+                  navigate(`/assignments/update/${submission._id}`)
+                }
                 className="px-2 py-1  hover:bg-white/30 text-white rounded"
               >
                 Update
               </button>
               <button
-                onClick={() => console.log("del", _id)}
+                onClick={() =>
+                  navigate(`/assignments/update/${submission._id}`)
+                }
                 className="px-4 py-3  hover:bg-white/30 text-white rounded"
               >
                 Delete

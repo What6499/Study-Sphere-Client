@@ -10,6 +10,7 @@ import CreateAssignment from "../pages/Create-Assignment/CreateAssignment";
 import AssignmentDetails from "../../components/AssignmentDetails";
 import MyAssignments from "../../Dashboard/MySubmissions";
 import Dashboard from "../../Dashboard/Dashboard";
+import UpdateAssignment from "../pages/UpdateAssignmnet/UpdateAssignment";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         Component: Dashboard,
+      },
+      {
+        path: "update-assignment/:id",
+        Component: UpdateAssignment,
       },
     ],
   },
