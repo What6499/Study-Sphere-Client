@@ -11,9 +11,9 @@ import AssignmentDetails from "../../components/AssignmentDetails";
 import MyAssignments from "../../Dashboard/MySubmissions";
 import Dashboard from "../../Dashboard/Dashboard";
 import UpdateAssignment from "../pages/UpdateAssignmnet/UpdateAssignment";
-import PendingAssignments from "../pages/PendingAssignmnets/PendingAssignments";
 import PrivateRoute from "../../components/PrivateRoute";
 import NotFound from "../../components/NotFound";
+import PendingAssignments from "../pages/PendingAssignmnets/PendingAssignments";
 const router = createBrowserRouter([
   {
     path: "/",
