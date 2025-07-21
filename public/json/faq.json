@@ -1,0 +1,18 @@
+[
+  {
+    "question": "How do I create an assignment?",
+    "answer": "You can create assignments from the dashboard by filling out the assignment form with title, description, due date, and difficulty level."
+  },
+  {
+    "question": "Can I track my submitted assignments?",
+    "answer": "Yes, you can view your progress, submission history, and evaluation status from your profile."
+  },
+  {
+    "question": "Who can evaluate my assignment?",
+    "answer": "Only the creator of the assignment can evaluate it. You'll be notified once it's graded."
+  },
+  {
+    "question": "Is dark mode supported?",
+    "answer": "Absolutely! We support both light and dark themes for your comfort."
+  }
+]
