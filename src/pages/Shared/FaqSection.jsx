@@ -16,9 +16,12 @@ const FaqSection = () => {
         </h2>
         <div className="space-y-4">
           {faqData.map((faq, index) => (
-            <div className="collapse collapse-arrow bg-gray-800" key={index}>
+            <div
+              className="collapse shadow-md collapse-arrow bg-white dark:bg-gray-800"
+              key={index}
+            >
               <input type="checkbox" />
-              <div className="collapse-title  text-gray-100 text-lg font-medium">
+              <div className="collapse-title dark:text-gray-100 text-gray-900 text-lg font-medium">
                 {faq.question}
               </div>
               <div className="collapse-content text-base text-gray-600 dark:text-gray-300">

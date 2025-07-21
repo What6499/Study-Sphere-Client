@@ -60,8 +60,10 @@ const NavBar = () => {
             <div
               tabIndex={0}
               role="button"
-              className={`btn btn-ghost text-white ${
-                location.pathname !== "/" ? "text-black dark:text-white" : ""
+              className={`btn btn-ghost ${
+                location.pathname !== "/" || scrolled
+                  ? "text-black dark:text-white"
+                  : "text-white "
               }  lg:hidden`}
             >
               <svg
@@ -96,6 +98,9 @@ const NavBar = () => {
               {navItems.map((item) => (
                 <li key={item.name}>
                   <NavLink
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
                     to={item.path}
                     className={({ isActive }) =>
                       `transition-colors duration-300 text-white  ${
@@ -126,6 +131,9 @@ const NavBar = () => {
             {navItems.map((item) => (
               <li key={item.name}>
                 <NavLink
+                  onClick={() =>
+                    window.scrollTo({ top: 0, behavior: "smooth" })
+                  }
                   to={item.path}
                   className={({ isActive }) =>
                     `transition-colors duration-300  ${

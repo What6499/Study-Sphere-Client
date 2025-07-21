@@ -68,6 +68,7 @@ const Assignments = () => {
                   setAssignments={setAssignments}
                   key={assignment._id}
                   assignment={assignment}
+                  bg={"dark:bg-gray-800"}
                 />
               ))}
             </div>

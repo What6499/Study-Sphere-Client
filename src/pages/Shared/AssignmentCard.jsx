@@ -44,7 +44,7 @@ const AssignmentCard = ({ assignment, setAssignments, bg }) => {
     >
       <div className="px-4 flex gap-4">
         <img
-          src={thumbnail}
+          src={thumbnail || "/default.jpg"}
           alt="Thumbnail"
           className="w-12 h-12 rounded-full object-cover border border-gray-300 dark:border-gray-600"
         />
