@@ -3,7 +3,7 @@
 
 ##  Live URL
 
-[🔗 Click here to visit the live site](https://your-live-url.com)
+[🔗 Click here to visit the live site](https://study-sphere-abf36.web.app/)
 
 ---
 
