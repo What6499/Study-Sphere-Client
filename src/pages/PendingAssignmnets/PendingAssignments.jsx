@@ -18,7 +18,7 @@ const PendingAssignments = () => {
       try {
         const query = `?search=${search}`;
         const { data } = await axios.get(
-          `http://localhost:5000/pending-assignments${query}`
+          `https://study-sphere-server-ten.vercel.app//pending-assignments${query}`
         );
         setPendingSubmissions(data);
       } catch (err) {
@@ -37,10 +37,13 @@ const PendingAssignments = () => {
       return Swal.fire("All fields required", "", "warning");
     }
     try {
-      await axios.put(`http://localhost:5000/submissions/${selected._id}`, {
-        receivedMark: Number(markValue),
-        feedback,
-      });
+      await axios.put(
+        `https://study-sphere-server-ten.vercel.app//submissions/${selected._id}`,
+        {
+          receivedMark: Number(markValue),
+          feedback,
+        }
+      );
       Swal.fire("Success", "Submission marked", "success");
 
       setPendingSubmissions((prev) =>

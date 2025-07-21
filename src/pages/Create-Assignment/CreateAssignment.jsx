@@ -35,20 +35,25 @@ const CreateAssignment = () => {
       dueDate: formData.dueDate.toString(),
     };
 
-    axios.post("http://localhost:5000/assignments", assignment).then((res) => {
-      if (res.data.insertedId) {
-        Swal.fire("Success", res.message || "Assignment created!", "success");
-      }
+    axios
+      .post(
+        "https://study-sphere-server-ten.vercel.app//assignments",
+        assignment
+      )
+      .then((res) => {
+        if (res.data.insertedId) {
+          Swal.fire("Success", res.message || "Assignment created!", "success");
+        }
 
-      setFormData({
-        title: "",
-        description: "",
-        marks: "",
-        thumbnail: "",
-        difficulty: "",
-        dueDate: new Date(),
+        setFormData({
+          title: "",
+          description: "",
+          marks: "",
+          thumbnail: "",
+          difficulty: "",
+          dueDate: new Date(),
+        });
       });
-    });
   };
 
   return (
@@ -93,7 +98,7 @@ const CreateAssignment = () => {
             name="thumbnail"
             value={formData.thumbnail}
             onChange={handleChange}
-            placeholder="Thumbnail Image URL"
+            placeholder="Thumbnail Image URL (Optional)"
             className="w-full p-2 rounded focus:outline-none bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-600 transition-colors"
           />
           <select
