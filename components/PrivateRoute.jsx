@@ -3,7 +3,7 @@ import useAuth from "../src/Context/AuthContext/useAuth";
 import { Navigate } from "react-router";
 
 const PrivateRoute = ({ children }) => {
-  const { user, loading } = useAuth;
+  const { user } = useAuth;
 
   if (!user) {
     return <Navigate to={"/auth"}></Navigate>;
