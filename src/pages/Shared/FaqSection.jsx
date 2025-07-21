@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { motion } from "motion/react";
 const FaqSection = () => {
   const [faqData, setFaqData] = useState([]);
 
@@ -16,7 +16,15 @@ const FaqSection = () => {
         </h2>
         <div className="space-y-4">
           {faqData.map((faq, index) => (
-            <div
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{
+                duration: 0.1,
+                delay: index * 0.2,
+                ease: "easeIn",
+              }}
               className="collapse shadow-md collapse-arrow bg-white dark:bg-gray-800"
               key={index}
             >
@@ -27,7 +35,7 @@ const FaqSection = () => {
               <div className="collapse-content text-base text-gray-600 dark:text-gray-300">
                 {faq.answer}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
