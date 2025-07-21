@@ -21,7 +21,7 @@ const AssignmentDetails = () => {
       try {
         setLoading(true);
         const { data } = await axios.get(
-          `https://study-sphere-server-ten.vercel.app//assignments/${id}`
+          `https://study-sphere-server-ten.vercel.app/assignments/${id}`
         );
         setAssignment(data);
       } finally {
@@ -37,7 +37,7 @@ const AssignmentDetails = () => {
     setSubmitLoading(true);
     try {
       await axios
-        .post("https://study-sphere-server-ten.vercel.app//submissions", {
+        .post("https://study-sphere-server-ten.vercel.app/submissions", {
           assignmentId: id,
           userEmail: user.email,
           googleLink: submission.googleLink,

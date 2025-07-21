@@ -37,7 +37,7 @@ const CreateAssignment = () => {
 
     axios
       .post(
-        "https://study-sphere-server-ten.vercel.app//assignments",
+        "https://study-sphere-server-ten.vercel.app/assignments",
         assignment
       )
       .then((res) => {

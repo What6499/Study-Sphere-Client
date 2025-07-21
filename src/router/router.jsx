@@ -12,10 +12,13 @@ import MyAssignments from "../../Dashboard/MySubmissions";
 import Dashboard from "../../Dashboard/Dashboard";
 import UpdateAssignment from "../pages/UpdateAssignmnet/UpdateAssignment";
 import PendingAssignments from "../pages/PendingAssignmnets/PendingAssignments";
+import PrivateRoute from "../../components/PrivateRoute";
+import NotFound from "../../components/NotFound";
 const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    errorElement: <NotFound></NotFound>,
     children: [
       {
         index: true,
@@ -31,23 +34,43 @@ const router = createBrowserRouter([
       },
       {
         path: "/create-assignment",
-        Component: CreateAssignment,
+        element: (
+          <PrivateRoute>
+            <CreateAssignment></CreateAssignment>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/assignments/:id",
-        Component: AssignmentDetails,
+        element: (
+          <PrivateRoute>
+            <AssignmentDetails></AssignmentDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard",
-        Component: Dashboard,
+        element: (
+          <PrivateRoute>
+            <Dashboard></Dashboard>
+          </PrivateRoute>
+        ),
       },
       {
         path: "update-assignment/:id",
-        Component: UpdateAssignment,
+        element: (
+          <PrivateRoute>
+            <UpdateAssignment></UpdateAssignment>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/pending-assignments",
-        Component: PendingAssignments,
+        element: (
+          <PrivateRoute>
+            <PendingAssignments></PendingAssignments>
+          </PrivateRoute>
+        ),
       },
     ],
   },

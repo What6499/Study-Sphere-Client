@@ -18,7 +18,7 @@ const PendingAssignments = () => {
       try {
         const query = `?search=${search}`;
         const { data } = await axios.get(
-          `https://study-sphere-server-ten.vercel.app//pending-assignments${query}`
+          `https://study-sphere-server-ten.vercel.app/pending-assignments${query}`
         );
         setPendingSubmissions(data);
       } catch (err) {
@@ -38,7 +38,7 @@ const PendingAssignments = () => {
     }
     try {
       await axios.put(
-        `https://study-sphere-server-ten.vercel.app//submissions/${selected._id}`,
+        `https://study-sphere-server-ten.vercel.app/submissions/${selected._id}`,
         {
           receivedMark: Number(markValue),
           feedback,

@@ -25,7 +25,7 @@ const Dashboard = () => {
       setIsFetching(true);
       try {
         const response = await axios.get(
-          "https://study-sphere-server-ten.vercel.app//submissions",
+          "https://study-sphere-server-ten.vercel.app/submissions",
           {
             headers: {
               Authorization: `Bearer ${user.accessToken}`,
@@ -52,7 +52,7 @@ const Dashboard = () => {
       setIsFetching(true);
       try {
         const response = await axios.get(
-          "https://study-sphere-server-ten.vercel.app//my-progress",
+          "https://study-sphere-server-ten.vercel.app/my-progress",
           {
             headers: {
               Authorization: `Bearer ${user.accessToken}`,
@@ -80,7 +80,7 @@ const Dashboard = () => {
       if (tab !== "my-assignments") return;
       try {
         const response = await axios.get(
-          "https://study-sphere-server-ten.vercel.app//my-assignments",
+          "https://study-sphere-server-ten.vercel.app/my-assignments",
           {
             headers: {
               Authorization: `Bearer ${user.accessToken}`,

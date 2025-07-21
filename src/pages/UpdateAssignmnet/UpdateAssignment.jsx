@@ -25,7 +25,7 @@ const UpdateAssignment = () => {
     const fetchAssignment = async () => {
       try {
         const { data } = await axios.get(
-          `https://study-sphere-server-ten.vercel.app//assignments/${id}`
+          `https://study-sphere-server-ten.vercel.app/assignments/${id}`
         );
 
         setFormData({
@@ -66,7 +66,7 @@ const UpdateAssignment = () => {
     };
 
     const { data } = await axios.put(
-      `https://study-sphere-server-ten.vercel.app//update-assignment/${id}`,
+      `https://study-sphere-server-ten.vercel.app/update-assignment/${id}`,
       assignment
     );
 

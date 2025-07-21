@@ -14,7 +14,7 @@ const Assignments = () => {
       setDataLoading(true);
       const query = `?search=${search}&difficulty=${difficulty}`;
       const { data } = await axios.get(
-        `https://study-sphere-server-ten.vercel.app//assignments${query}`
+        `https://study-sphere-server-ten.vercel.app/assignments${query}`
       );
       setAssignments(data);
       setDataLoading(false);

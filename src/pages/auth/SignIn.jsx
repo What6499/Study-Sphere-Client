@@ -30,7 +30,7 @@ const SignIn = ({ toggleAuth }) => {
       .then(async (res) => {
         const user = res.user;
 
-        await axios.post("https://study-sphere-server-ten.vercel.app//users", {
+        await axios.post("https://study-sphere-server-ten.vercel.app/users", {
           email: user.email,
         });
         console.log(res);
