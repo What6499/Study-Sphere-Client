@@ -10,7 +10,7 @@ import MyAssignments from "./MyAssignments";
 
 const Dashboard = () => {
   const location = useLocation();
-  const initialTab = location.state?.tab || "my-progress";
+  const initialTab = location.state?.tab || "my-submissions";
   const [tab, setTab] = useState(initialTab);
   const [mySubmissions, setMySubmissions] = useState([]);
   const [myProgress, setMyProgress] = useState([]);

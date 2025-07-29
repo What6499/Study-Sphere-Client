@@ -13,7 +13,7 @@ const MyAssignments = ({ assignments }) => {
     <AssignmentCard
       key={assignment._id}
       assignment={assignment}
-      bg={"dark:bg-gray-900"}
+      bg={"dark:bg-gray-900 mb-2"}
     ></AssignmentCard>
   ));
 };

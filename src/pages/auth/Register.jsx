@@ -11,7 +11,6 @@ const Register = ({ toggleAuth }) => {
   const { createUser } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -58,7 +57,7 @@ const Register = ({ toggleAuth }) => {
           timer: 2000,
           showConfirmButton: false,
         }).then(() => {
-          navigate(from, { replace: true });
+          navigate(location.state?.from?.pathname || "/");
         });
       })
       .catch((error) => {

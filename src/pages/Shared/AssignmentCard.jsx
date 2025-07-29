@@ -76,7 +76,7 @@ const AssignmentCard = ({ assignment, setAssignments, bg }) => {
           Update
         </button>
         <button
-          onClick={handleDelete}
+          onClick={() => handleDelete(_id)}
           disabled={user?.email !== assignment.creatorEmail}
           className="px-4 py-3 bg-red-400 hover:bg-red-500  disabled:bg-gray-400
     disabled:opacity-50

@@ -10,7 +10,6 @@ const SignIn = ({ toggleAuth }) => {
   const { signIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
 
   const handleSignIn = (event) => {
     event.preventDefault();
@@ -41,7 +40,7 @@ const SignIn = ({ toggleAuth }) => {
           timer: 2000,
           showConfirmButton: false,
         }).then(() => {
-          navigate(from, { replace: true });
+          navigate(location.state?.from?.pathname || "/");
         });
       })
       .catch((error) => {

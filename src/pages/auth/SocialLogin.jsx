@@ -1,8 +1,11 @@
 import React from "react";
 import useAuth from "../../Context/AuthContext/useAuth";
 import axios from "axios";
+import { useLocation, useNavigate } from "react-router";
 
 const SocialLogin = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const { signInWithGoogle } = useAuth();
   const handleGoogleSignIn = () => {
     signInWithGoogle().then(async (res) => {
@@ -11,6 +14,7 @@ const SocialLogin = () => {
       await axios.post("https://study-sphere-server-ten.vercel.app/users", {
         email: user.email,
       });
+      navigate(location.state?.from?.pathname || "/");
     });
   };
 
