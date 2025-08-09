@@ -45,3 +45,20 @@ To help students collaborate by creating assignments, submitting their work, tra
 - [`tailwindcss`](https://www.npmjs.com/package/tailwindcss) – Utility-first CSS framework
 
 ---
+## Setup and Running Locally
+
+### Prerequisites
+- Node.js (v16 or higher)
+- MongoDB (local or Atlas)
+- Google OAuth credentials
+
+
+### Installation
+
+1. Clone the repo:
+
+   
+   git clone https://github.com/What6499/Study-Sphere-Client.git
+   cd Study-Sphere-Client
+2. Open it in you IDE or terminal.
+3. Run "npm i" and the necessary packages will be installed automatically.
