@@ -43,6 +43,8 @@ const Register = ({ toggleAuth }) => {
         const user = result.user;
         await axios.post("http://localhost:5000/users", {
           email: user.email,
+          displayName: name,
+          photoURL: photoURL,
         });
         return updateProfile(user, {
           displayName: name,

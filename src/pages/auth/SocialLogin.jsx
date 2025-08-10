@@ -13,6 +13,8 @@ const SocialLogin = () => {
       console.log(res.user);
       await axios.post("http://localhost:5000/users", {
         email: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
       });
       navigate(location.state?.from?.pathname || "/");
     });

@@ -31,6 +31,8 @@ const SignIn = ({ toggleAuth }) => {
 
         await axios.post("http://localhost:5000/users", {
           email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
         });
         console.log(res);
         Swal.fire({

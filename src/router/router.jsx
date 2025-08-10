@@ -14,6 +14,8 @@ import UpdateAssignment from "../pages/UpdateAssignmnet/UpdateAssignment";
 import PrivateRoute from "../../components/PrivateRoute";
 import NotFound from "../../components/NotFound";
 import PendingAssignments from "../pages/PendingAssignmnets/PendingAssignments";
+import Leaderboard from "../pages/Leaderboard/Leaderboard";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -71,6 +73,10 @@ const router = createBrowserRouter([
             <PendingAssignments></PendingAssignments>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/leaderboard",
+        Component: Leaderboard,
       },
     ],
   },
