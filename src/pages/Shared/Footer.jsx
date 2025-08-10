@@ -3,7 +3,7 @@ import { Facebook, Twitter, Linkedin, Github } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#F5F5F5] dark:bg-gray-800 py-10">
+    <footer className="bg-[#F5F5F5] dark:bg-gray-900  py-28">
       <div className="max-w-6xl mx-auto px-4 text-center space-y-4">
         <h3 className="text-xl font-bold text-gray-800 dark:text-white">
           StudySphere

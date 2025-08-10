@@ -138,7 +138,7 @@ const Register = ({ toggleAuth }) => {
         </div>
         <button
           type="submit"
-          className="w-full py-2 px-4 bg-emerald-400 hover:bg-emerald-500 cursor-pointer text-white font-semibold rounded-md transition duration-200 hover:scale-105"
+          className="w-full py-2 px-4 bg-emerald-500 hover:bg-emerald-500 cursor-pointer text-white font-semibold rounded-md transition duration-200 hover:scale-105"
         >
           Create Account
         </button>

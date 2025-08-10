@@ -2,18 +2,18 @@ import React from "react";
 
 const AboutUs = () => {
   return (
-    <section className="py-20 bg-white dark:bg-gray-900">
+    <section className="py-36 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6 max-w-4xl">
         <div className="text-center space-y-8">
           <h2 className="text-5xl font-bold text-gray-900 dark:text-white">
             About Us
           </h2>
 
-          <div className="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-full"></div>
 
           <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto">
             At{" "}
-            <span className="font-semibold text-blue-600 dark:text-blue-400">
+            <span className="font-semibold text-emerald-500 dark:text-emerald-400">
               StudySphere
             </span>
             , we believe learning is better when it's collaborative and

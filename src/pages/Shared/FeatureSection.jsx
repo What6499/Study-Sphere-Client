@@ -30,11 +30,13 @@ const features = [
 
 const FeatureSection = () => {
   return (
-    <section id="features" className="py-16 bg-gray-50 dark:bg-gray-900">
+    <section id="features" className="py-36  bg-gray-50 dark:bg-gray-900">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-800 dark:text-white mb-12">
+        <h2 className="text-5xl text-center mb-6 font-bold text-gray-900 dark:text-white">
           Explore Our Features
         </h2>
+
+        <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-full mb-6"></div>
         <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((feature, index) => (
             <motion.div

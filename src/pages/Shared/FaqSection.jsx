@@ -9,8 +9,8 @@ const FaqSection = () => {
       .then((data) => setFaqData(data));
   }, []);
   return (
-    <section className="py-16 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-4xl mx-auto px-4 bg-gray50 dark:bg-gray-900">
+    <section className="py-36 bg-gray-50 dark:bg-gray-800">
+      <div className="max-w-4xl mx-auto px-4 bg-gray50 dark:bg-gray-800">
         <h2 className="text-3xl font-bold text-gray-800 dark:text-white  text-center mb-10">
           Frequently Asked Questions
         </h2>
@@ -25,7 +25,7 @@ const FaqSection = () => {
                 delay: index * 0.2,
                 ease: "easeIn",
               }}
-              className="collapse shadow-md collapse-arrow bg-white dark:bg-gray-800"
+              className="collapse shadow-md collapse-arrow bg-white dark:bg-gray-900"
               key={index}
             >
               <input type="checkbox" />

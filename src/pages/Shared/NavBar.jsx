@@ -98,7 +98,7 @@ const NavBar = () => {
       <li>
         <NavLink
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          to={"/friends"}
+          to={"/Students"}
           className={({ isActive }) =>
             `transition-colors duration-300  ${
               isActive
@@ -109,7 +109,24 @@ const NavBar = () => {
             }`}`
           }
         >
-          Friends
+          Students
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          to={"/leaderboard"}
+          className={({ isActive }) =>
+            `transition-colors duration-300  ${
+              isActive
+                ? "text-emerald-400 font-semibold"
+                : "dark:text-white text-white"
+            }${`${
+              location.pathname !== "/" || scrolled ? "text-light-primary" : ""
+            }`}`
+          }
+        >
+          Leaderboard
         </NavLink>
       </li>
     </>
@@ -204,7 +221,7 @@ const NavBar = () => {
             <Profile></Profile>
           ) : (
             <Link to="auth">
-              <button className="px-4 w-max py-2 cursor-pointer rounded-md  bg-emerald-400 text-white border-none hover:bg-emerald-500 flex items-center justify-center">
+              <button className="px-4 w-max py-2 cursor-pointer rounded-md  bg-emerald-500 text-white border-none hover:bg-emerald-400 flex items-center justify-center">
                 Sign In
               </button>
             </Link>
