@@ -106,7 +106,7 @@ const Dashboard = () => {
             <div className="w-full dark:bg-gray-800 rounded-lg bg-white text-light-primary dark:text-white text-center">
               <div
                 onClick={() => handleTabSwitch("my-progress")}
-                className={`w-full rounded-md text-gray-900 px-4 py-3 dark:text-white hover:bg-gray-500/20 cursor-pointer ${
+                className={`w-full rounded-md text-gray-900 px-4 py-3 dark:text-white hover:bg-green-300/70 cursor-pointer ${
                   tab === "my-progress" && "bg-green-300/70"
                 }`}
               >
@@ -114,7 +114,7 @@ const Dashboard = () => {
               </div>
               <div
                 onClick={() => handleTabSwitch("my-submissions")}
-                className={`w-full rounded-md px-4 text-gray-900 py-3 dark:text-white hover:bg-gray-500/20 cursor-pointer ${
+                className={`w-full rounded-md px-4 text-gray-900 py-3 dark:text-white hover:bg-green-300/70 cursor-pointer ${
                   tab === "my-submissions" && "bg-green-300/70"
                 }`}
               >
@@ -122,7 +122,7 @@ const Dashboard = () => {
               </div>
               <div
                 onClick={() => handleTabSwitch("my-assignments")}
-                className={`w-full rounded-md text-gray-900 dark:text-white px-4 py-3 hover:bg-gray-500/20 cursor-pointer ${
+                className={`w-full rounded-md text-gray-900 dark:text-white px-4 py-3 hover:bg-green-300/70 cursor-pointer ${
                   tab === "my-assignments" && "bg-green-300/70"
                 }`}
               >
