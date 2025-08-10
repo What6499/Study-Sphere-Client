@@ -24,7 +24,7 @@ const Assignments = () => {
   }, [search, difficulty]);
 
   return (
-    <div className="min-h-screen  px-4 md:px-6 lg:px-8 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
+    <div className="min-h-screen pt-28 px-4 md:px-6 lg:px-8 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
         <aside className="lg:col-span-1 bg-white dark:bg-gray-800 p-4 rounded-xl max-h-max shadow">
           <h2 className="text-lg font-semibold mb-4">Filters</h2>

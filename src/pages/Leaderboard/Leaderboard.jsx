@@ -38,7 +38,7 @@ const Leaderboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 py-12  ">
+    <div className="min-h-screen pt-28 bg-white dark:bg-gray-900 py-12  ">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -50,7 +50,7 @@ const Leaderboard = () => {
         </div>
 
         {leaderboard.length === 0 ? (
-          <div className="text-center py-16">
+          <div className="text-center pt-28 py-16">
             <div className="card bg-base-100 dark:bg-gray-800 w-96 mx-auto shadow-lg">
               <div className="card-body text-center">
                 <h2 className="card-title justify-center text-gray-900 dark:text-white">
@@ -64,12 +64,12 @@ const Leaderboard = () => {
             </div>
           </div>
         ) : (
-          <div className="card bg-white dark:bg-gray-800 shadow-lg ">
+          <div className="card  bg-white dark:bg-gray-800 shadow-lg ">
             <div className="card-body p-0">
               <div className="overflow-x-auto">
-                <table className="table table-zebra w-full">
+                <table className="table  w-full">
                   <thead>
-                    <tr className="bg-emerald-500 text-white">
+                    <tr className="bg-emerald-500 text-white   ">
                       <th className="text-white font-semibold text-base rounded-tl-lg">
                         Rank
                       </th>
@@ -86,7 +86,7 @@ const Leaderboard = () => {
                       ({ email, name, photo, averageMark }, index) => (
                         <tr
                           key={email}
-                          className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+                          className=" dark:bg-gray-700 border-b-gray-400/30 border-dashed transition-colors duration-200"
                         >
                           <td className="font-bold text-lg">
                             <span
