@@ -42,6 +42,11 @@ const PendingAssignments = () => {
         {
           receivedMark: Number(markValue),
           feedback,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.accessToken}`,
+          },
         }
       );
       Swal.fire("Success", "Submission marked", "success");
