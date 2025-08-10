@@ -41,11 +41,80 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { name: "Home", path: "/" },
-    { name: "Assignments", path: "/assignments" },
-    { name: "Pending Assignments", path: "/pending-assignments" },
-  ];
+  const navigation = (
+    <>
+      <li>
+        <NavLink
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          to={"/"}
+          className={({ isActive }) =>
+            `transition-colors duration-300   ${
+              isActive
+                ? "text-emerald-400 font-semibold"
+                : "dark:text-white text-white"
+            }${`${
+              location.pathname !== "/" || scrolled ? "text-light-primary" : ""
+            }`}`
+          }
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          to={"/assignments"}
+          className={({ isActive }) =>
+            `transition-colors duration-300  ${
+              isActive
+                ? "text-emerald-400 font-semibold"
+                : "dark:text-white text-white"
+            }${`${
+              location.pathname !== "/" || scrolled ? "text-light-primary" : ""
+            }`}`
+          }
+        >
+          Assignments
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          to={"/pending-assignments"}
+          className={({ isActive }) =>
+            `transition-colors duration-300  ${
+              isActive
+                ? "text-emerald-400 font-semibold"
+                : "dark:text-white text-white"
+            }${`${
+              location.pathname !== "/" || scrolled ? "text-light-primary" : ""
+            }`}`
+          }
+        >
+          Pending Assignments
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          to={"/friends"}
+          className={({ isActive }) =>
+            `transition-colors duration-300  ${
+              isActive
+                ? "text-emerald-400 font-semibold"
+                : "dark:text-white text-white"
+            }${`${
+              location.pathname !== "/" || scrolled ? "text-light-primary" : ""
+            }`}`
+          }
+        >
+          Friends
+        </NavLink>
+      </li>
+    </>
+  );
+
   return (
     <div
       className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ${
@@ -95,23 +164,7 @@ const NavBar = () => {
               >
                 StudySphere
               </a>
-              {navItems.map((item) => (
-                <li key={item.name}>
-                  <NavLink
-                    onClick={() =>
-                      window.scrollTo({ top: 0, behavior: "smooth" })
-                    }
-                    to={item.path}
-                    className={({ isActive }) =>
-                      `transition-colors duration-300 text-white  ${
-                        isActive ? "text-[#4BCCA8] font-semibold" : ""
-                      } `
-                    }
-                  >
-                    {item.name}
-                  </NavLink>
-                </li>
-              ))}
+              {navigation}
             </ul>
           </div>
           <a
@@ -127,31 +180,7 @@ const NavBar = () => {
         </div>
 
         <div className="navbar-end hidden lg:flex w-full">
-          <ul className="menu menu-horizontal px-1">
-            {navItems.map((item) => (
-              <li key={item.name}>
-                <NavLink
-                  onClick={() =>
-                    window.scrollTo({ top: 0, behavior: "smooth" })
-                  }
-                  to={item.path}
-                  className={({ isActive }) =>
-                    `transition-colors duration-300  ${
-                      isActive
-                        ? "text-emerald-400 font-semibold"
-                        : "dark:text-white text-white"
-                    }${`${
-                      location.pathname !== "/" || scrolled
-                        ? "text-light-primary"
-                        : ""
-                    }`}`
-                  }
-                >
-                  {item.name}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+          <ul className="menu menu-horizontal px-1">{navigation}</ul>
         </div>
 
         <div className="flex-1 flex justify-end space-x-4 items-center">

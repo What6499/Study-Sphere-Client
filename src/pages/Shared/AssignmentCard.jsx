@@ -15,7 +15,7 @@ const AssignmentCard = ({ assignment, setAssignments, bg }) => {
   };
   const handleDelete = async (id) => {
     const { data } = await axios.delete(
-      `https://study-sphere-server-ten.vercel.app/assignments/${id}`
+      `http://localhost:5000/assignments/${id}`
     );
     if (data?.message === "Assignment deleted successfully") {
       Swal.fire({

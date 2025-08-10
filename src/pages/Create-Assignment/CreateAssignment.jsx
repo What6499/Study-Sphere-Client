@@ -35,25 +35,20 @@ const CreateAssignment = () => {
       dueDate: formData.dueDate.toString(),
     };
 
-    axios
-      .post(
-        "https://study-sphere-server-ten.vercel.app/assignments",
-        assignment
-      )
-      .then((res) => {
-        if (res.data.insertedId) {
-          Swal.fire("Success", res.message || "Assignment created!", "success");
-        }
+    axios.post("http://localhost:5000/assignments", assignment).then((res) => {
+      if (res.data.insertedId) {
+        Swal.fire("Success", res.message || "Assignment created!", "success");
+      }
 
-        setFormData({
-          title: "",
-          description: "",
-          marks: "",
-          thumbnail: "",
-          difficulty: "",
-          dueDate: new Date(),
-        });
+      setFormData({
+        title: "",
+        description: "",
+        marks: "",
+        thumbnail: "",
+        difficulty: "",
+        dueDate: new Date(),
       });
+    });
   };
 
   return (

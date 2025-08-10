@@ -14,7 +14,7 @@ const Assignments = () => {
       setDataLoading(true);
       const query = `?search=${search}&difficulty=${difficulty}`;
       const { data } = await axios.get(
-        `https://study-sphere-server-ten.vercel.app/assignments${query}`
+        `http://localhost:5000/assignments${query}`
       );
       setAssignments(data);
       setDataLoading(false);
@@ -58,7 +58,7 @@ const Assignments = () => {
 
         <section className="lg:col-span-3 space-y-4">
           {dataLoading ? (
-            <p className="text-center">Loading...</p>
+            <span className="loading flex mx-auto loading-bars loading-xl"></span>
           ) : assignments.length === 0 ? (
             <p className="text-center text-gray-500">No assignments found.</p>
           ) : (

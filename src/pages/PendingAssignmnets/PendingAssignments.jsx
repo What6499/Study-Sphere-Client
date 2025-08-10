@@ -18,7 +18,7 @@ const PendingAssignments = () => {
       try {
         const query = `?search=${search}`;
         const { data } = await axios.get(
-          `https://study-sphere-server-ten.vercel.app/pending-assignments${query}`
+          `http://localhost:5000/pending-assignments${query}`
         );
         setPendingSubmissions(data);
       } catch (err) {
@@ -37,13 +37,10 @@ const PendingAssignments = () => {
       return Swal.fire("All fields required", "", "warning");
     }
     try {
-      await axios.put(
-        `https://study-sphere-server-ten.vercel.app/submissions/${selected._id}`,
-        {
-          receivedMark: Number(markValue),
-          feedback,
-        }
-      );
+      await axios.put(`http://localhost:5000/submissions/${selected._id}`, {
+        receivedMark: Number(markValue),
+        feedback,
+      });
       Swal.fire("Success", "Submission marked", "success");
 
       setPendingSubmissions((prev) =>
@@ -75,7 +72,7 @@ const PendingAssignments = () => {
 
         <section className="lg:col-span-3 space-y-4">
           {isFetching ? (
-            <h1 className="text-center text-xl">Loading...</h1>
+            <span className="loading flex mx-auto loading-bars loading-xl"></span>
           ) : pendingSubmissions.length === 0 ? (
             <h1 className="text-center text-xl">
               No pending submissions found.

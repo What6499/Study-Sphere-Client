@@ -41,7 +41,7 @@ const Register = ({ toggleAuth }) => {
     createUser(email, password)
       .then(async (result) => {
         const user = result.user;
-        await axios.post("https://study-sphere-server-ten.vercel.app/users", {
+        await axios.post("http://localhost:5000/users", {
           email: user.email,
         });
         return updateProfile(user, {
