@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 const Leaderboard = () => {
   const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log(leaderboard);
+
   useEffect(() => {
     const fetchTopStudents = async () => {
       setLoading(true);
@@ -21,7 +21,7 @@ const Leaderboard = () => {
     };
     fetchTopStudents();
   }, []);
-  console.log(leaderboard);
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px] bg-white dark:bg-gray-900">
@@ -36,8 +36,8 @@ const Leaderboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 py-12">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-white dark:bg-gray-900 py-12  ">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             Leaderboard
@@ -49,7 +49,7 @@ const Leaderboard = () => {
 
         {leaderboard.length === 0 ? (
           <div className="text-center py-16">
-            <div className="card bg-base-100 dark:bg-gray-800 w-96 mx-auto shadow-xl">
+            <div className="card bg-base-100 dark:bg-gray-800 w-96 mx-auto shadow-lg">
               <div className="card-body text-center">
                 <h2 className="card-title justify-center text-gray-900 dark:text-white">
                   No Data Available
@@ -62,19 +62,19 @@ const Leaderboard = () => {
             </div>
           </div>
         ) : (
-          <div className="card bg-white dark:bg-gray-800 shadow-xl">
+          <div className="card bg-white dark:bg-gray-800 shadow-lg ">
             <div className="card-body p-0">
               <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">
                   <thead>
                     <tr className="bg-emerald-500 text-white">
-                      <th className="text-white font-semibold text-base">
+                      <th className="text-white font-semibold text-base rounded-tl-lg">
                         Rank
                       </th>
                       <th className="text-white font-semibold text-base">
                         Student
                       </th>
-                      <th className="text-white font-semibold text-base text-right">
+                      <th className="text-white font-semibold text-base text-right rounded-tr-lg">
                         Average Mark
                       </th>
                     </tr>

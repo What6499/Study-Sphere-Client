@@ -77,41 +77,49 @@ const NavBar = () => {
           Assignments
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          to={"/pending-assignments"}
-          className={({ isActive }) =>
-            `transition-colors duration-300  ${
-              isActive
-                ? "text-emerald-400 font-semibold"
-                : "dark:text-white text-white"
-            }${`${
-              location.pathname !== "/" || scrolled ? "text-light-primary" : ""
-            }`}`
-          }
-        >
-          Pending Assignments
-        </NavLink>
-      </li>
+      {user && (
+        <li>
+          <NavLink
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            to={"/pending-assignments"}
+            className={({ isActive }) =>
+              `transition-colors duration-300  ${
+                isActive
+                  ? "text-emerald-400 font-semibold"
+                  : "dark:text-white text-white"
+              }${`${
+                location.pathname !== "/" || scrolled
+                  ? "text-light-primary"
+                  : ""
+              }`}`
+            }
+          >
+            Pending Assignments
+          </NavLink>
+        </li>
+      )}
 
-      <li>
-        <NavLink
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          to={"/Students"}
-          className={({ isActive }) =>
-            `transition-colors duration-300  ${
-              isActive
-                ? "text-emerald-400 font-semibold"
-                : "dark:text-white text-white"
-            }${`${
-              location.pathname !== "/" || scrolled ? "text-light-primary" : ""
-            }`}`
-          }
-        >
-          Students
-        </NavLink>
-      </li>
+      {user && (
+        <li>
+          <NavLink
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            to={"/students"}
+            className={({ isActive }) =>
+              `transition-colors duration-300  ${
+                isActive
+                  ? "text-emerald-400 font-semibold"
+                  : "dark:text-white text-white"
+              }${`${
+                location.pathname !== "/" || scrolled
+                  ? "text-light-primary"
+                  : ""
+              }`}`
+            }
+          >
+            Students
+          </NavLink>
+        </li>
+      )}
       <li>
         <NavLink
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

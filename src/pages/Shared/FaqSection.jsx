@@ -9,7 +9,7 @@ const FaqSection = () => {
       .then((data) => setFaqData(data));
   }, []);
   return (
-    <section className="py-36 bg-gray-50 dark:bg-gray-800">
+    <section id="faq" className="py-36 bg-gray-50 dark:bg-gray-800">
       <div className="max-w-4xl mx-auto px-4 bg-gray50 dark:bg-gray-800">
         <h2 className="text-3xl font-bold text-gray-800 dark:text-white  text-center mb-10">
           Frequently Asked Questions
