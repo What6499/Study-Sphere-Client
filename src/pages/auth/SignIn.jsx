@@ -29,7 +29,7 @@ const SignIn = ({ toggleAuth }) => {
       .then(async (res) => {
         const user = res.user;
 
-        await axios.post("http://localhost:5000/users", {
+        await axios.post("https://study-sphere-server-ten.vercel.app/users", {
           email: user.email,
           displayName: user.displayName,
           photoURL: user.photoURL,

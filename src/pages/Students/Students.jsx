@@ -12,7 +12,7 @@ const Students = () => {
       try {
         const query = `?search=${search}`;
         const { data } = await axios.get(
-          `http://localhost:5000/all-users${query}`
+          `https://study-sphere-server-ten.vercel.app/all-users${query}`
         );
         setUsers(data);
       } catch (error) {

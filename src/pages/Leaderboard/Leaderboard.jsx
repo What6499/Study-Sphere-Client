@@ -10,7 +10,9 @@ const Leaderboard = () => {
     const fetchTopStudents = async () => {
       setLoading(true);
       try {
-        const { data } = await axios.get(`http://localhost:5000/leaderboard`);
+        const { data } = await axios.get(
+          `https://study-sphere-server-ten.vercel.app/leaderboard`
+        );
         setLeaderboard(data);
       } catch (err) {
         console.error(err);
@@ -24,7 +26,7 @@ const Leaderboard = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[400px] bg-white dark:bg-gray-900">
+      <div className="flex items-center justify-center pt-24 min-h-[400px] bg-white dark:bg-gray-900">
         <div className="text-center">
           <span className="loading loading-bars loading-xl text-emerald-500"></span>
           <p className="text-gray-600 dark:text-gray-300 text-lg mt-4">
@@ -36,7 +38,7 @@ const Leaderboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 py-12  ">
+    <div className="min-h-screen bg-white dark:bg-gray-900 py-12  pt-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">

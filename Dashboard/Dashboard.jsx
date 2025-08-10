@@ -24,11 +24,14 @@ const Dashboard = () => {
     const fetchSubmissions = async () => {
       setIsFetching(true);
       try {
-        const response = await axios.get("http://localhost:5000/submissions", {
-          headers: {
-            Authorization: `Bearer ${user.accessToken}`,
-          },
-        });
+        const response = await axios.get(
+          "https://study-sphere-server-ten.vercel.app/submissions",
+          {
+            headers: {
+              Authorization: `Bearer ${user.accessToken}`,
+            },
+          }
+        );
         const { data } = response;
 
         setMySubmissions(data);
@@ -48,11 +51,14 @@ const Dashboard = () => {
     const fetchSubmissions = async () => {
       setIsFetching(true);
       try {
-        const response = await axios.get("http://localhost:5000/my-progress", {
-          headers: {
-            Authorization: `Bearer ${user.accessToken}`,
-          },
-        });
+        const response = await axios.get(
+          "https://study-sphere-server-ten.vercel.app/my-progress",
+          {
+            headers: {
+              Authorization: `Bearer ${user.accessToken}`,
+            },
+          }
+        );
         const { data } = response;
 
         setMyProgress(data);
@@ -74,7 +80,7 @@ const Dashboard = () => {
       if (tab !== "my-assignments") return;
       try {
         const response = await axios.get(
-          "http://localhost:5000/my-assignments",
+          "https://study-sphere-server-ten.vercel.app/my-assignments",
           {
             headers: {
               Authorization: `Bearer ${user.accessToken}`,
