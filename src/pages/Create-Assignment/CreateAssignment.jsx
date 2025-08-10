@@ -57,7 +57,7 @@ const CreateAssignment = () => {
   };
 
   return (
-    <div className="min-h-screen pt-24 px-4 md:px-6 lg:px-8 bg-gray-100 dark:bg-gray-900 transition-colors">
+    <div className="min-h-screen  px-4 md:px-6 lg:px-8 bg-gray-100 dark:bg-gray-900 transition-colors">
       <div className="max-w-3xl mx-auto mt-10 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg transition-colors">
         <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
           Create Assignment

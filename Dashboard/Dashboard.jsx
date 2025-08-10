@@ -96,7 +96,7 @@ const Dashboard = () => {
   }, [tab, user, loading]);
 
   return (
-    <div className="pt-24 bg-gray-100 dark:bg-gray-900 min-h-screen">
+    <div className=" bg-gray-100 dark:bg-gray-900 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-6">
           <div className="w-full lg:w-1/4">
